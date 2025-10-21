@@ -1,0 +1,149 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/images/u=188414198,1744177242&fm=253&fmt=auto&app=120&f=JPEG.jpg",
+  "annotations": [
+    {
+      "start": [
+        423,
+        509
+      ],
+      "end": [
+        423,
+        509
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        331,
+        768
+      ],
+      "end": [
+        331,
+        768
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        490,
+        488
+      ],
+      "end": [
+        490,
+        488
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        502,
+        771
+      ],
+      "end": [
+        502,
+        771
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        419,
+        486
+      ],
+      "end": [
+        419,
+        486
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        341,
+        480
+      ],
+      "end": [
+        341,
+        480
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        418,
+        508
+      ],
+      "end": [
+        419,
+        507
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        261,
+        502
+      ],
+      "end": [
+        261,
+        502
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        335,
+        499
+      ],
+      "end": [
+        335,
+        499
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        334,
+        404
+      ],
+      "end": [
+        334,
+        404
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        259,
+        502
+      ],
+      "end": [
+        259,
+        502
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        302,
+        424
+      ],
+      "end": [
+        302,
+        424
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        248,
+        377
+      ],
+      "end": [
+        248,
+        377
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752982014.7366464
+}

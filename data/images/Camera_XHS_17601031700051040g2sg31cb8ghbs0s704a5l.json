@@ -1,0 +1,159 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_XHS_17601031700051040g2sg31cb8ghbs0s704a5l.jpg",
+  "image_size": [
+    1440,
+    1920
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1760489980.1850874,
+      "bbox": [
+        597,
+        733,
+        968,
+        868
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1760489981.8841038,
+      "bbox": [
+        588,
+        588,
+        808,
+        677
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760489985.9188151,
+      "bbox": [
+        683,
+        3,
+        777,
+        394
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489989.3402474,
+      "bbox": null,
+      "points": [
+        [
+          4,
+          1295
+        ],
+        [
+          651,
+          1264
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489991.8883393,
+      "bbox": null,
+      "points": [
+        [
+          0,
+          1523
+        ],
+        [
+          970,
+          1467
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 5,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489993.6084461,
+      "bbox": null,
+      "points": [
+        [
+          972,
+          1467
+        ],
+        [
+          743,
+          398
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 6,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489995.6251698,
+      "bbox": null,
+      "points": [
+        [
+          696,
+          390
+        ],
+        [
+          660,
+          1271
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760489999.218437
+}

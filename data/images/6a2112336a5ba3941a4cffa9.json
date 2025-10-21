@@ -1,0 +1,151 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\6a2112336a5ba3941a4cffa9.jpg",
+  "image_size": [
+    852,
+    1136
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960134.0664623,
+      "bbox": null,
+      "points": [
+        [
+          227,
+          176
+        ],
+        [
+          461,
+          1131
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960137.6330235,
+      "bbox": null,
+      "points": [
+        [
+          246,
+          194
+        ],
+        [
+          785,
+          1135
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758960142.5640917,
+      "bbox": [
+        274,
+        0,
+        381,
+        381
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758960147.403475,
+      "bbox": [
+        330,
+        2,
+        621,
+        794
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 4,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758960149.4098296,
+      "bbox": [
+        125,
+        11,
+        236,
+        332
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 5,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1758960153.8242726,
+      "bbox": [
+        267,
+        276,
+        392,
+        370
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "id": 6,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1758960155.4169888,
+      "bbox": [
+        268,
+        545,
+        648,
+        771
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1758960156.3924994
+}

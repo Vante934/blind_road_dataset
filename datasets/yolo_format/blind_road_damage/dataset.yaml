@@ -1,0 +1,9 @@
+names:
+- 正常盲道
+- 损坏盲道
+- 障碍物
+nc: 3
+path: E:\Code\python\download\blind_road_dataset\datasets\yolo_format\blind_road_damage
+test: images
+train: images
+val: images

@@ -1,0 +1,109 @@
+{
+  "alert_levels": {
+    "level_1": {
+      "distance_range": [2.0, 5.0],
+      "template": "前方{distance}米{direction}有{obstacle_type}，请注意",
+      "priority": 1,
+      "cooldown": 3.0,
+      "description": "一级警报：障碍类型提示"
+    },
+    "level_2": {
+      "distance_range": [1.0, 2.0],
+      "template": "注意！{direction}{distance}米有{obstacle_type}，请减速",
+      "priority": 2,
+      "cooldown": 1.5,
+      "vibration": true,
+      "description": "二级警报：精确方位提示"
+    },
+    "level_3": {
+      "distance_range": [0.0, 0.5],
+      "template": "危险！立即停止！{direction}{distance}米有{obstacle_type}",
+      "priority": 3,
+      "cooldown": 0.5,
+      "vibration": true,
+      "buzzer": true,
+      "force_interrupt": true,
+      "description": "三级警报：紧急警报"
+    }
+  },
+  "obstacle_types": {
+    "person": {
+      "name": "行人",
+      "risk_level": "high",
+      "priority": 3
+    },
+    "vehicle": {
+      "name": "车辆",
+      "risk_level": "high",
+      "priority": 3
+    },
+    "bicycle": {
+      "name": "自行车",
+      "risk_level": "medium",
+      "priority": 2
+    },
+    "pothole": {
+      "name": "坑洞",
+      "risk_level": "high",
+      "priority": 3
+    },
+    "construction": {
+      "name": "施工区域",
+      "risk_level": "high",
+      "priority": 3
+    },
+    "trash_bin": {
+      "name": "垃圾桶",
+      "risk_level": "medium",
+      "priority": 2
+    },
+    "street_light": {
+      "name": "路灯杆",
+      "risk_level": "medium",
+      "priority": 2
+    },
+    "tree": {
+      "name": "树木",
+      "risk_level": "medium",
+      "priority": 2
+    },
+    "sign": {
+      "name": "标志牌",
+      "risk_level": "low",
+      "priority": 1
+    }
+  },
+  "directions": {
+    "front": "前方",
+    "left": "左侧",
+    "right": "右侧",
+    "back": "后方",
+    "front_left": "左前方",
+    "front_right": "右前方",
+    "back_left": "左后方",
+    "back_right": "右后方"
+  },
+  "voice_settings": {
+    "rate": 1.0,
+    "volume": 0.8,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "language": "zh-CN"
+  },
+  "hardware_settings": {
+    "vibration_enabled": true,
+    "buzzer_enabled": true,
+    "buzzer_volume": 90,
+    "vibration_intensity": {
+      "level_1": 0.3,
+      "level_2": 0.6,
+      "level_3": 1.0
+    }
+  },
+  "monitoring_settings": {
+    "check_interval": 0.1,
+    "max_obstacles": 10,
+    "alert_cooldown": 2.0,
+    "force_interrupt_enabled": true
+  }
+}
+

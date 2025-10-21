@@ -1,0 +1,121 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_1040g3k831n76ncq14s705pcrss8ogf3ngqq2uko.jpg",
+  "image_size": [
+    1440,
+    1920
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760488698.699115,
+      "bbox": [
+        0,
+        480,
+        817,
+        1174
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488702.8110723,
+      "bbox": null,
+      "points": [
+        [
+          395,
+          1894
+        ],
+        [
+          536,
+          1239
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488702.870437,
+      "bbox": null,
+      "points": [
+        [
+          541,
+          1228
+        ],
+        [
+          545,
+          1222
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488703.5289814,
+      "bbox": null,
+      "points": [
+        [
+          545,
+          1219
+        ],
+        [
+          534,
+          1233
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488705.9331799,
+      "bbox": null,
+      "points": [
+        [
+          921,
+          1882
+        ],
+        [
+          766,
+          893
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760488712.4636116
+}

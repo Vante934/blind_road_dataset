@@ -1,0 +1,46 @@
+{
+  "image_path": "images\\image_022.jpg",
+  "annotations": [
+    {
+      "start": [
+        218,
+        485
+      ],
+      "end": [
+        43,
+        887
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        41,
+        726
+      ],
+      "end": [
+        166,
+        496
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        137,
+        162,
+        307,
+        542
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        3,
+        249,
+        101,
+        565
+      ]
+    }
+  ],
+  "timestamp": 1753009787.9508297
+}

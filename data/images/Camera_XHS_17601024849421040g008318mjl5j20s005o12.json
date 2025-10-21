@@ -1,0 +1,136 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_XHS_17601024849421040g008318mjl5j20s005o12.jpg",
+  "image_size": [
+    1440,
+    2560
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760488969.3123639,
+      "bbox": [
+        463,
+        48,
+        1406,
+        811
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 1,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760488975.201287,
+      "bbox": [
+        0,
+        451,
+        897,
+        1071
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760488978.1493828,
+      "bbox": [
+        0,
+        943,
+        667,
+        1801
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488981.7443461,
+      "bbox": null,
+      "points": [
+        [
+          258,
+          2528
+        ],
+        [
+          1154,
+          799
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488983.0287147,
+      "bbox": null,
+      "points": [
+        [
+          1169,
+          785
+        ],
+        [
+          1291,
+          581
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 5,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488985.4098418,
+      "bbox": null,
+      "points": [
+        [
+          1,
+          2218
+        ],
+        [
+          189,
+          1853
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760488986.9455006
+}

@@ -1,0 +1,204 @@
+{
+  "environment_annotation_classes": {
+    "weather_related": {
+      "rain_drops": {
+        "id": 0,
+        "name": "雨滴",
+        "description": "图像中的雨滴或水滴",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "wet_surface": {
+        "id": 1,
+        "name": "湿润表面",
+        "description": "湿润、反光的路面或表面",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "fog_particles": {
+        "id": 2,
+        "name": "雾颗粒",
+        "description": "雾天环境中的雾颗粒或模糊区域",
+        "safety_impact": "very_high",
+        "detection_priority": 1
+      },
+      "snow_patches": {
+        "id": 3,
+        "name": "雪块",
+        "description": "地面或物体上的积雪",
+        "safety_impact": "high",
+        "detection_priority": 1
+      }
+    },
+    "lighting_related": {
+      "shadow_areas": {
+        "id": 10,
+        "name": "阴影区域",
+        "description": "建筑物或物体产生的阴影",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      },
+      "bright_spots": {
+        "id": 11,
+        "name": "强光点",
+        "description": "过亮的光源或反射点",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      },
+      "dark_corners": {
+        "id": 12,
+        "name": "暗角",
+        "description": "光照不足的角落或区域",
+        "safety_impact": "high",
+        "detection_priority": 1
+      }
+    },
+    "surface_related": {
+      "cracks": {
+        "id": 20,
+        "name": "裂缝",
+        "description": "路面或表面的裂缝",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      },
+      "potholes": {
+        "id": 21,
+        "name": "坑洞",
+        "description": "路面上的坑洞或凹陷",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "steps": {
+        "id": 22,
+        "name": "台阶",
+        "description": "人行道或建筑前的台阶",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "uneven_pavement": {
+        "id": 23,
+        "name": "不平整路面",
+        "description": "表面不平整的人行道或路面",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      }
+    },
+    "construction_related": {
+      "construction_signs": {
+        "id": 30,
+        "name": "施工标志",
+        "description": "施工区域的警告标志",
+        "safety_impact": "very_high",
+        "detection_priority": 1
+      },
+      "safety_cones": {
+        "id": 31,
+        "name": "安全锥",
+        "description": "橙色或红色的安全锥",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "construction_barriers": {
+        "id": 32,
+        "name": "施工围栏",
+        "description": "施工区域的围栏或挡板",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "construction_machinery": {
+        "id": 33,
+        "name": "施工机械",
+        "description": "挖掘机、推土机等施工设备",
+        "safety_impact": "very_high",
+        "detection_priority": 1
+      }
+    },
+    "traffic_related": {
+      "traffic_lights": {
+        "id": 40,
+        "name": "交通信号灯",
+        "description": "红、黄、绿交通信号灯",
+        "safety_impact": "very_high",
+        "detection_priority": 1
+      },
+      "crosswalk_lines": {
+        "id": 41,
+        "name": "斑马线",
+        "description": "人行横道的白色条纹",
+        "safety_impact": "high",
+        "detection_priority": 1
+      },
+      "stop_signs": {
+        "id": 42,
+        "name": "停车标志",
+        "description": "红色八角形停车标志",
+        "safety_impact": "very_high",
+        "detection_priority": 1
+      },
+      "yield_signs": {
+        "id": 43,
+        "name": "让行标志",
+        "description": "三角形让行标志",
+        "safety_impact": "high",
+        "detection_priority": 1
+      }
+    },
+    "obstacle_related": {
+      "trees": {
+        "id": 50,
+        "name": "树木",
+        "description": "人行道旁的树木",
+        "safety_impact": "low",
+        "detection_priority": 3
+      },
+      "street_furniture": {
+        "id": 51,
+        "name": "街道设施",
+        "description": "长椅、垃圾桶等街道设施",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      },
+      "utility_poles": {
+        "id": 52,
+        "name": "电线杆",
+        "description": "路边的电线杆或路灯杆",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      },
+      "bicycles": {
+        "id": 53,
+        "name": "自行车",
+        "description": "停放的自行车",
+        "safety_impact": "medium",
+        "detection_priority": 2
+      }
+    }
+  },
+  "annotation_guidelines": {
+    "bounding_box_style": "YOLO",
+    "coordinate_format": "normalized",
+    "minimum_object_size": 0.01,
+    "occlusion_handling": "partial_visible_ok",
+    "quality_requirements": {
+      "image_resolution": "minimum_640x480",
+      "lighting_conditions": "various",
+      "weather_conditions": "all_types",
+      "time_of_day": "day_and_night"
+    }
+  },
+  "dataset_distribution": {
+    "total_classes": 24,
+    "high_priority_classes": 12,
+    "medium_priority_classes": 8,
+    "low_priority_classes": 4,
+    "recommended_samples_per_class": 1000,
+    "minimum_samples_per_class": 100
+  }
+}
+
+
+
+
+
+
+

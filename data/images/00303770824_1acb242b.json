@@ -1,0 +1,113 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\00303770824_1acb242b.jpg",
+  "image_size": [
+    1023,
+    678
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959175.5403068,
+      "bbox": null,
+      "points": [
+        [
+          354,
+          663
+        ],
+        [
+          615,
+          455
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959178.3807309,
+      "bbox": null,
+      "points": [
+        [
+          655,
+          470
+        ],
+        [
+          497,
+          676
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758959183.980237,
+      "bbox": [
+        136,
+        300,
+        685,
+        485
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758959185.6497889,
+      "bbox": [
+        751,
+        276,
+        890,
+        444
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 4,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758959188.16348,
+      "bbox": [
+        650,
+        311,
+        772,
+        404
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    }
+  ],
+  "timestamp": 1758959198.4356563
+}

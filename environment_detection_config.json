@@ -1,0 +1,106 @@
+{
+  "environment_detection": {
+    "enabled": true,
+    "detection_interval": 1.0,
+    "safety_thresholds": {
+      "high_risk": 0.3,
+      "medium_risk": 0.6,
+      "safe": 1.0
+    },
+    "weather_detection": {
+      "enabled": true,
+      "rain_threshold": 0.1,
+      "fog_brightness_threshold": 150,
+      "fog_contrast_threshold": 25,
+      "snow_white_ratio_threshold": 0.3
+    },
+    "lighting_detection": {
+      "enabled": true,
+      "brightness_thresholds": {
+        "very_dark": 50,
+        "dark": 100,
+        "normal": 150,
+        "bright": 200
+      },
+      "contrast_thresholds": {
+        "poor": 15,
+        "moderate": 25,
+        "good": 30
+      }
+    },
+    "surface_detection": {
+      "enabled": true,
+      "wet_bright_ratio_threshold": 0.1,
+      "wet_contrast_threshold": 40,
+      "uneven_vertical_density_threshold": 0.05,
+      "roughness_threshold": 0.3
+    },
+    "construction_detection": {
+      "enabled": true,
+      "area_threshold": 1000,
+      "aspect_ratio_threshold": 2.0,
+      "width_threshold": 50
+    },
+    "intersection_detection": {
+      "enabled": true,
+      "traffic_light_area_range": [100, 2000],
+      "circularity_threshold": 0.7,
+      "crosswalk_min_lines": 3,
+      "line_angle_threshold": 15
+    },
+    "crowd_detection": {
+      "enabled": true,
+      "density_thresholds": {
+        "low": 0.1,
+        "medium": 0.3,
+        "high": 0.6,
+        "very_high": 0.8
+      }
+    },
+    "voice_alerts": {
+      "enabled": true,
+      "emergency_priority": 3,
+      "warning_priority": 1,
+      "cooldown_time": 1.0
+    },
+    "ui_display": {
+      "show_weather_info": true,
+      "show_lighting_info": true,
+      "show_surface_info": true,
+      "show_safety_score": true,
+      "show_environment_level": true
+    }
+  },
+  "safety_weights": {
+    "construction": 0.3,
+    "intersection": 0.25,
+    "crowd": 0.2,
+    "weather": 0.15,
+    "lighting": 0.1,
+    "surface": 0.1
+  },
+  "recommendations": {
+    "high_risk": [
+      "立即停止前进",
+      "寻找安全区域",
+      "联系紧急联系人"
+    ],
+    "medium_risk": [
+      "谨慎前行",
+      "放慢脚步",
+      "注意周围环境"
+    ],
+    "safe": [
+      "可以正常前进",
+      "保持警惕",
+      "继续导航"
+    ]
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+{
+  "image_path": "images\\image_012.jpg",
+  "annotations": [
+    {
+      "start": [
+        373,
+        489
+      ],
+      "end": [
+        323,
+        257
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        325,
+        255
+      ],
+      "end": [
+        411,
+        254
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        414,
+        251
+      ],
+      "end": [
+        393,
+        227
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        393,
+        227
+      ],
+      "end": [
+        325,
+        231
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        325,
+        231
+      ],
+      "end": [
+        343,
+        154
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        353,
+        153
+      ],
+      "end": [
+        352,
+        220
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        352,
+        220
+      ],
+      "end": [
+        414,
+        217
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        414,
+        217
+      ],
+      "end": [
+        459,
+        258
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        459,
+        258
+      ],
+      "end": [
+        359,
+        269
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        359,
+        269
+      ],
+      "end": [
+        459,
+        495
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        185,
+        149,
+        305,
+        282
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        346,
+        84,
+        385,
+        153
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        96,
+        125,
+        290,
+        215
+      ]
+    }
+  ],
+  "timestamp": 1753009549.2704124
+}

@@ -1,0 +1,113 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_XHS_17601034122281040g00831cba8jvjg81g5pje.jpg",
+  "image_size": [
+    1440,
+    2560
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760490144.2001371,
+      "bbox": [
+        297,
+        1328,
+        1418,
+        2067
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 1,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760490146.1757863,
+      "bbox": [
+        496,
+        1104,
+        1082,
+        1421
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760490147.6943455,
+      "bbox": [
+        270,
+        1051,
+        585,
+        1248
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760490151.2951279,
+      "bbox": null,
+      "points": [
+        [
+          1428,
+          2459
+        ],
+        [
+          323,
+          1241
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760490153.5260396,
+      "bbox": null,
+      "points": [
+        [
+          1428,
+          2223
+        ],
+        [
+          378,
+          1248
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760490154.9924006
+}

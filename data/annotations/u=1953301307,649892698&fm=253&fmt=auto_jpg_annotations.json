@@ -1,0 +1,50 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/images/u=1953301307,649892698&fm=253&fmt=auto.jpg",
+  "annotations": [
+    {
+      "start": [
+        725,
+        886
+      ],
+      "end": [
+        725,
+        886
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        349,
+        462
+      ],
+      "end": [
+        349,
+        462
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        980,
+        874
+      ],
+      "end": [
+        980,
+        874
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        393,
+        438
+      ],
+      "end": [
+        393,
+        438
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752982336.644823
+}

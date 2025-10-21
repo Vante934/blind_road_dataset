@@ -1,0 +1,140 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_XHS_17601026288171040g00831l35v3f4j0505op9.jpg",
+  "image_size": [
+    1440,
+    1440
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760489466.1856859,
+      "bbox": [
+        348,
+        351,
+        878,
+        1052
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 1,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760489469.255102,
+      "bbox": [
+        472,
+        1,
+        728,
+        367
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489472.5638053,
+      "bbox": null,
+      "points": [
+        [
+          560,
+          1412
+        ],
+        [
+          664,
+          399
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489472.6281364,
+      "bbox": null,
+      "points": [
+        [
+          664,
+          398
+        ],
+        [
+          664,
+          398
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489472.6796935,
+      "bbox": null,
+      "points": [
+        [
+          664,
+          398
+        ],
+        [
+          664,
+          398
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 5,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489478.0861354,
+      "bbox": null,
+      "points": [
+        [
+          838,
+          1423
+        ],
+        [
+          688,
+          368
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760489479.0614052
+}

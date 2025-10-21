@@ -1,0 +1,81 @@
+{
+  "image_path": "images\\b58f8c5494eef01f2aac9caf6ee0df2abd317dc9.jpg",
+  "annotations": [
+    {
+      "start": [
+        1079,
+        1401
+      ],
+      "end": [
+        1079,
+        1401
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        761,
+        1301
+      ],
+      "end": [
+        700,
+        871
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        773,
+        864
+      ],
+      "end": [
+        708,
+        687
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        656,
+        685
+      ],
+      "end": [
+        652,
+        840
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        454,
+        1387
+      ],
+      "end": [
+        595,
+        862
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        595,
+        862
+      ],
+      "end": [
+        637,
+        862
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        631,
+        798,
+        769,
+        937
+      ]
+    }
+  ],
+  "timestamp": 1753009177.1136177
+}

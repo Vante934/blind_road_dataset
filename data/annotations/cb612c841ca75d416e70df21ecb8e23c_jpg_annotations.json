@@ -1,0 +1,28 @@
+{
+  "image_path": "images\\cb612c841ca75d416e70df21ecb8e23c.jpg",
+  "annotations": [
+    {
+      "start": [
+        1251,
+        1444
+      ],
+      "end": [
+        1406,
+        322
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        1671,
+        1402
+      ],
+      "end": [
+        1545,
+        331
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1753009215.4834943
+}

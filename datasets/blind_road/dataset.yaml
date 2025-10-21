@@ -1,0 +1,11 @@
+names:
+  0: blind_path
+  1: obstacle
+  2: person
+  3: vehicle
+  4: pothole
+  5: step
+nc: 6
+path: datasets/blind_road
+train: train/images
+val: val/images

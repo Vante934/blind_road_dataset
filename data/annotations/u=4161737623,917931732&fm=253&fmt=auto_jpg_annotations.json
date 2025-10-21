@@ -1,0 +1,59 @@
+{
+  "image_path": "images\\u=4161737623,917931732&fm=253&fmt=auto.jpg",
+  "annotations": [
+    {
+      "start": [
+        498,
+        392
+      ],
+      "end": [
+        537,
+        994
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        326,
+        942
+      ],
+      "end": [
+        326,
+        942
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        528,
+        985
+      ],
+      "end": [
+        163,
+        953
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        163,
+        953
+      ],
+      "end": [
+        380,
+        391
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        13,
+        138,
+        742,
+        321
+      ]
+    }
+  ],
+  "timestamp": 1753010752.5869281
+}

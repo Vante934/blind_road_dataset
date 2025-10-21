@@ -1,0 +1,147 @@
+{
+  "image_path": "images\\u=3285842686,1867665765&fm=253&fmt=auto&app=138&f=JPEG.jpg",
+  "annotations": [
+    {
+      "start": [
+        186,
+        221
+      ],
+      "end": [
+        229,
+        666
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        351,
+        645
+      ],
+      "end": [
+        226,
+        238
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        226,
+        238
+      ],
+      "end": [
+        311,
+        238
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        312,
+        232
+      ],
+      "end": [
+        313,
+        232
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        313,
+        232
+      ],
+      "end": [
+        297,
+        216
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        298,
+        215
+      ],
+      "end": [
+        380,
+        217
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        381,
+        216
+      ],
+      "end": [
+        270,
+        141
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        260,
+        144
+      ],
+      "end": [
+        338,
+        207
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        338,
+        207
+      ],
+      "end": [
+        338,
+        207
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        338,
+        207
+      ],
+      "end": [
+        259,
+        204
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        259,
+        204
+      ],
+      "end": [
+        272,
+        222
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        272,
+        222
+      ],
+      "end": [
+        193,
+        222
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        104,
+        72,
+        318,
+        157
+      ]
+    }
+  ],
+  "timestamp": 1753010611.2185264
+}

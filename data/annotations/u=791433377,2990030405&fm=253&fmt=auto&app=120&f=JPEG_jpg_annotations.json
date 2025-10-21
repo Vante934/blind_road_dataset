@@ -1,0 +1,259 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/images/u=791433377,2990030405&fm=253&fmt=auto&app=120&f=JPEG.jpg",
+  "annotations": [
+    {
+      "start": [
+        410,
+        988
+      ],
+      "end": [
+        410,
+        988
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        472,
+        574
+      ],
+      "end": [
+        472,
+        574
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        406,
+        562
+      ],
+      "end": [
+        406,
+        562
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        428,
+        500
+      ],
+      "end": [
+        428,
+        500
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        546,
+        494
+      ],
+      "end": [
+        546,
+        494
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        653,
+        986
+      ],
+      "end": [
+        653,
+        986
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        611,
+        573
+      ],
+      "end": [
+        611,
+        573
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        677,
+        570
+      ],
+      "end": [
+        677,
+        570
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        662,
+        502
+      ],
+      "end": [
+        662,
+        502
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        544,
+        496
+      ],
+      "end": [
+        544,
+        496
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        554,
+        277
+      ],
+      "end": [
+        554,
+        277
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        493,
+        273
+      ],
+      "end": [
+        493,
+        273
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        494,
+        256
+      ],
+      "end": [
+        494,
+        256
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        523,
+        258
+      ],
+      "end": [
+        523,
+        258
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        550,
+        159
+      ],
+      "end": [
+        550,
+        159
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        610,
+        135
+      ],
+      "end": [
+        610,
+        135
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        553,
+        276
+      ],
+      "end": [
+        553,
+        276
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        613,
+        271
+      ],
+      "end": [
+        613,
+        271
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        608,
+        263
+      ],
+      "end": [
+        608,
+        263
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        578,
+        254
+      ],
+      "end": [
+        578,
+        254
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        571,
+        183
+      ],
+      "end": [
+        571,
+        183
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        594,
+        158
+      ],
+      "end": [
+        594,
+        158
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        647,
+        135
+      ],
+      "end": [
+        647,
+        135
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752982146.3646426
+}

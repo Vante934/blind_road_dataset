@@ -1,0 +1,143 @@
+{
+  "image_path": "images\\image_005.jpg",
+  "annotations": [
+    {
+      "start": [
+        530,
+        156
+      ],
+      "end": [
+        469,
+        262
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        469,
+        262
+      ],
+      "end": [
+        330,
+        246
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        330,
+        245
+      ],
+      "end": [
+        128,
+        421
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        128,
+        421
+      ],
+      "end": [
+        350,
+        472
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        350,
+        472
+      ],
+      "end": [
+        335,
+        499
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        602,
+        103
+      ],
+      "end": [
+        540,
+        311
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        540,
+        311
+      ],
+      "end": [
+        373,
+        292
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        373,
+        292
+      ],
+      "end": [
+        297,
+        376
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        297,
+        376
+      ],
+      "end": [
+        510,
+        416
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        510,
+        416
+      ],
+      "end": [
+        486,
+        499
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        403,
+        0,
+        534,
+        120
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        505,
+        0,
+        649,
+        132
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        390,
+        299,
+        624,
+        422
+      ]
+    }
+  ],
+  "timestamp": 1753009324.2120903
+}

@@ -1,0 +1,119 @@
+# 盲道检测模型训练配置文件
+# 支持YOLOv8系列模型的训练和优化
+
+# 项目基本信息
+project_name: "blind_road_detection"
+dataset_path: "datasets/yolo_format/blind_road_damage"
+results_dir: "results/advanced_training"
+
+# 模型配置
+model_type: "yolov8n"  # 可选: yolov8n, yolov8s, yolov8m, yolov8l, yolov8x
+img_size: 640
+batch_size: 16
+
+# 训练配置
+epochs: 100
+learning_rate: 0.01
+weight_decay: 0.0005
+momentum: 0.937
+patience: 20
+save_period: 10
+
+# 数据增强
+data_augmentation: true
+mixed_precision: true
+multi_scale_training: true
+
+# 损失函数配置
+class_weights: null  # 类别权重，null表示不使用
+focal_loss: false
+label_smoothing: 0.0
+
+# 学习率调度
+cosine_lr: true
+warmup_epochs: 3
+
+# 训练优化
+gradient_clipping: 1.0
+early_stopping: true
+
+# 模型集成
+model_ensemble: false
+test_time_augmentation: false
+
+# 超参数优化
+hyperparameter_optimization: false
+optimization_trials: 50
+
+# 实验跟踪
+use_wandb: false
+wandb_project: "blind_road_detection"
+wandb_entity: null
+
+# 类别配置
+classes:
+  - "正常盲道"
+  - "损坏盲道" 
+  - "障碍物"
+
+# 数据路径配置
+train_path: "train"
+val_path: "val"
+test_path: "test"
+
+# 验证配置
+val_interval: 1  # 每N个epoch验证一次
+val_batch_size: 32
+
+# 保存配置
+save_best: true
+save_last: true
+save_period: 10
+
+# 日志配置
+log_level: "INFO"
+log_interval: 10  # 每N个batch记录一次日志
+
+# 设备配置
+device: "auto"  # auto, cpu, cuda, cuda:0, etc.
+num_workers: 4
+pin_memory: true
+
+# 推理配置
+conf_threshold: 0.25
+iou_threshold: 0.45
+max_detections: 1000
+
+# 云服务器配置
+cloud_deployment:
+  enabled: false
+  platform: "auto"  # auto, aws, gcp, azure, aliyun
+  instance_type: "g4dn.xlarge"
+  region: "us-west-2"
+  
+# 模型导出配置
+export_formats:
+  - "torchscript"
+  - "onnx"
+  - "tflite"
+  - "coreml"
+
+# 性能优化
+optimize_for_mobile: false
+quantization: false
+pruning: false
+
+# 数据验证
+validate_data: true
+check_annotations: true
+visualize_samples: false
+
+
+
+
+
+
+
+
+
+

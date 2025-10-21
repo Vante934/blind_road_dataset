@@ -1,0 +1,52 @@
+{
+  "obstacle_types": {
+    "person": {
+      "name": "行人",
+      "priority": "high"
+    },
+    "car": {
+      "name": "车辆",
+      "priority": "high"
+    },
+    "bicycle": {
+      "name": "自行车",
+      "priority": "medium"
+    },
+    "pothole": {
+      "name": "坑洞",
+      "priority": "high"
+    },
+    "construction": {
+      "name": "施工区域",
+      "priority": "high"
+    },
+    "trash_bin": {
+      "name": "垃圾桶",
+      "priority": "medium"
+    },
+    "street_light": {
+      "name": "路灯杆",
+      "priority": "medium"
+    },
+    "tree": {
+      "name": "树木",
+      "priority": "medium"
+    },
+    "sign": {
+      "name": "标志牌",
+      "priority": "low"
+    }
+  },
+  "warning_templates": {
+    "high_risk": "危险！{object_name}接近，请立即停止！",
+    "medium_risk": "注意！{object_name}在附近，请减速",
+    "low_risk": "前方有{object_name}，请注意"
+  },
+  "voice_settings": {
+    "rate": 1.0,
+    "volume": 0.8,
+    "voice": "zh-CN-XiaoxiaoNeural"
+  },
+  "azure_speech_key": "",
+  "azure_speech_region": "eastus"
+}

@@ -1,0 +1,143 @@
+{
+  "image_path": "images\\image_015.jpg",
+  "annotations": [
+    {
+      "start": [
+        20,
+        854
+      ],
+      "end": [
+        133,
+        514
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        133,
+        514
+      ],
+      "end": [
+        325,
+        524
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        325,
+        524
+      ],
+      "end": [
+        312,
+        438
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        312,
+        438
+      ],
+      "end": [
+        223,
+        432
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        176,
+        943
+      ],
+      "end": [
+        157,
+        1108
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        153,
+        1108
+      ],
+      "end": [
+        222,
+        552
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        222,
+        552
+      ],
+      "end": [
+        406,
+        556
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        406,
+        556
+      ],
+      "end": [
+        349,
+        413
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        349,
+        413
+      ],
+      "end": [
+        228,
+        406
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        228,
+        406
+      ],
+      "end": [
+        236,
+        344
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        174,
+        48,
+        249,
+        556
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        225,
+        216,
+        400,
+        376
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        374,
+        330,
+        499,
+        532
+      ]
+    }
+  ],
+  "timestamp": 1753009684.2461655
+}

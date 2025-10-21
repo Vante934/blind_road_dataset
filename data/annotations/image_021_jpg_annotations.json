@@ -1,0 +1,55 @@
+{
+  "image_path": "images\\image_021.jpg",
+  "annotations": [
+    {
+      "start": [
+        166,
+        535
+      ],
+      "end": [
+        167,
+        172
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        265,
+        165
+      ],
+      "end": [
+        419,
+        617
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        124,
+        63,
+        348,
+        213
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        287,
+        225,
+        499,
+        403
+      ]
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        169,
+        210,
+        375,
+        347
+      ]
+    }
+  ],
+  "timestamp": 1753009768.926048
+}

@@ -1,0 +1,28 @@
+{
+  "image_path": "images\\image_006.jpg",
+  "annotations": [
+    {
+      "start": [
+        372,
+        657
+      ],
+      "end": [
+        274,
+        38
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        198,
+        646
+      ],
+      "end": [
+        255,
+        36
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752989383.7125375
+}

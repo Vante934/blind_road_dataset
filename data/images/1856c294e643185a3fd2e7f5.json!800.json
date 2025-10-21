@@ -1,0 +1,125 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\1856c294e643185a3fd2e7f5.jpg!800.jpg",
+  "image_size": [
+    800,
+    1067
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959512.886327,
+      "bbox": null,
+      "points": [
+        [
+          556,
+          2
+        ],
+        [
+          563,
+          250
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959514.1477084,
+      "bbox": null,
+      "points": [
+        [
+          561,
+          250
+        ],
+        [
+          395,
+          241
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959516.2778432,
+      "bbox": null,
+      "points": [
+        [
+          393,
+          241
+        ],
+        [
+          270,
+          1000
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959518.1189811,
+      "bbox": null,
+      "points": [
+        [
+          272,
+          997
+        ],
+        [
+          579,
+          1039
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959523.1842215,
+      "bbox": null,
+      "points": [
+        [
+          681,
+          4
+        ],
+        [
+          799,
+          597
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1758959526.8157742
+}

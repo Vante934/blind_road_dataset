@@ -1,0 +1,28 @@
+{
+  "image_path": "images\\image_023.jpg",
+  "annotations": [
+    {
+      "start": [
+        606,
+        499
+      ],
+      "end": [
+        161,
+        395
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        83,
+        401
+      ],
+      "end": [
+        403,
+        499
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752989949.8908186
+}

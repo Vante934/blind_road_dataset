@@ -1,0 +1,102 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\c2a9e6b6ac332ca6f938f0b65e380173.jpg",
+  "image_size": [
+    600,
+    401
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960482.9838252,
+      "bbox": null,
+      "points": [
+        [
+          226,
+          103
+        ],
+        [
+          592,
+          39
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960484.7763796,
+      "bbox": null,
+      "points": [
+        [
+          398,
+          167
+        ],
+        [
+          593,
+          130
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960486.7363021,
+      "bbox": null,
+      "points": [
+        [
+          396,
+          162
+        ],
+        [
+          399,
+          399
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960489.6237845,
+      "bbox": null,
+      "points": [
+        [
+          225,
+          107
+        ],
+        [
+          148,
+          400
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1758960491.1262984
+}

@@ -1,0 +1,70 @@
+{
+  "sdk_version": "1.0.0",
+  "description": "盲道障碍检测SDK配置文件",
+  
+  "detection": {
+    "model_path": "models/yolov8n.pt",
+    "confidence_threshold": 0.5,
+    "nms_threshold": 0.4,
+    "max_detections": 100
+  },
+  
+  "trajectory_prediction": {
+    "prediction_steps": 10,
+    "max_tracked_objects": 50,
+    "collision_distance_threshold": 100,
+    "velocity_threshold": 10.0
+  },
+  
+  "voice_system": {
+    "enabled": true,
+    "volume": 0.8,
+    "config_file": "configs/voice_config.json",
+    "tts_provider": "baidu",
+    "baidu_tts": {
+      "app_id": "",
+      "api_key": "",
+      "secret_key": ""
+    }
+  },
+  
+  "annotation": {
+    "auto_save": true,
+    "save_interval": 30,
+    "supported_formats": ["json", "yolo", "coco"],
+    "default_class": "obstacle"
+  },
+  
+  "training": {
+    "default_model": "yolov8n.pt",
+    "default_epochs": 100,
+    "default_batch_size": 16,
+    "default_image_size": 640,
+    "auto_device_selection": true,
+    "save_best_only": true,
+    "early_stopping_patience": 10
+  },
+  
+  "camera": {
+    "default_camera_id": 0,
+    "frame_width": 640,
+    "frame_height": 480,
+    "fps": 30,
+    "auto_exposure": true
+  },
+  
+  "logging": {
+    "level": "INFO",
+    "save_logs": true,
+    "log_file": "logs/sdk.log",
+    "max_log_size": "10MB"
+  },
+  
+  "paths": {
+    "models_dir": "models/",
+    "data_dir": "data/",
+    "annotations_dir": "data/annotations/",
+    "logs_dir": "logs/",
+    "exports_dir": "exports/"
+  }
+} 

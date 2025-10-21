@@ -1,0 +1,37 @@
+{
+  "image_path": "images\\u=3550793110,29389791&fm=253&fmt=auto.jpg",
+  "annotations": [
+    {
+      "start": [
+        525,
+        1143
+      ],
+      "end": [
+        469,
+        746
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        262,
+        721
+      ],
+      "end": [
+        154,
+        1184
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        296,
+        494,
+        486,
+        721
+      ]
+    }
+  ],
+  "timestamp": 1753010638.1279345
+}

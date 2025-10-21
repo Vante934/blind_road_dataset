@@ -1,0 +1,589 @@
+{
+  "obstacle_types": {
+    "dynamic": {
+      "person": {
+        "name": "人",
+        "templates": {
+          "far": "前方{distance}米{direction}有行人",
+          "near": "{direction}{distance}米有行人，请减速",
+          "danger": "危险！{direction}{distance}米有行人，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有行人"
+        }
+      },
+      "person_bicycle": {
+        "name": "骑自行车的人",
+        "templates": {
+          "far": "前方{distance}米{direction}有骑自行车的人",
+          "near": "{direction}{distance}米有骑自行车的人，请减速",
+          "danger": "危险！{direction}{distance}米有骑自行车的人，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有骑自行车的人"
+        }
+      },
+      "person_motorcycle": {
+        "name": "骑摩托车的人",
+        "templates": {
+          "far": "前方{distance}米{direction}有骑摩托车的人",
+          "near": "{direction}{distance}米有骑摩托车的人，请减速",
+          "danger": "危险！{direction}{distance}米有骑摩托车的人，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有骑摩托车的人"
+        }
+      },
+      "child": {
+        "name": "儿童",
+        "templates": {
+          "far": "前方{distance}米{direction}有儿童",
+          "near": "{direction}{distance}米有儿童，请减速",
+          "danger": "危险！{direction}{distance}米有儿童，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有儿童"
+        }
+      },
+      "elderly": {
+        "name": "老人",
+        "templates": {
+          "far": "前方{distance}米{direction}有老人",
+          "near": "{direction}{distance}米有老人，请减速",
+          "danger": "危险！{direction}{distance}米有老人，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有老人"
+        }
+      }
+    },
+    "vehicle": {
+      "car": {
+        "name": "汽车",
+        "templates": {
+          "far": "前方{distance}米{direction}有汽车",
+          "near": "{direction}{distance}米有汽车，请减速",
+          "danger": "危险！{direction}{distance}米有汽车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有汽车"
+        }
+      },
+      "motorcycle": {
+        "name": "摩托车",
+        "templates": {
+          "far": "前方{distance}米{direction}有摩托车",
+          "near": "{direction}{distance}米有摩托车，请减速",
+          "danger": "危险！{direction}{distance}米有摩托车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有摩托车"
+        }
+      },
+      "bus": {
+        "name": "公交车",
+        "templates": {
+          "far": "前方{distance}米{direction}有公交车",
+          "near": "{direction}{distance}米有公交车，请减速",
+          "danger": "危险！{direction}{distance}米有公交车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有公交车"
+        }
+      },
+      "truck": {
+        "name": "卡车",
+        "templates": {
+          "far": "前方{distance}米{direction}有卡车",
+          "near": "{direction}{distance}米有卡车，请减速",
+          "danger": "危险！{direction}{distance}米有卡车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有卡车"
+        }
+      },
+      "train": {
+        "name": "火车",
+        "templates": {
+          "far": "前方{distance}米{direction}有火车",
+          "near": "{direction}{distance}米有火车，请减速",
+          "danger": "危险！{direction}{distance}米有火车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有火车"
+        }
+      },
+      "bicycle": {
+        "name": "自行车",
+        "templates": {
+          "far": "前方{distance}米{direction}有自行车",
+          "near": "{direction}{distance}米有自行车，请减速",
+          "danger": "危险！{direction}{distance}米有自行车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有自行车"
+        }
+      },
+      "scooter": {
+        "name": "电动车",
+        "templates": {
+          "far": "前方{distance}米{direction}有电动车",
+          "near": "{direction}{distance}米有电动车，请减速",
+          "danger": "危险！{direction}{distance}米有电动车，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有电动车"
+        }
+      }
+    },
+    "ground_obstacle": {
+      "pothole": {
+        "name": "坑洼",
+        "templates": {
+          "far": "前方{distance}米{direction}有坑洼",
+          "near": "{direction}{distance}米有坑洼，请减速",
+          "danger": "危险！{direction}{distance}米有坑洼，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有深坑"
+        }
+      },
+      "step": {
+        "name": "台阶",
+        "templates": {
+          "far": "前方{distance}米{direction}有台阶",
+          "near": "{direction}{distance}米有台阶，请减速",
+          "danger": "危险！{direction}{distance}米有台阶，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有台阶"
+        }
+      },
+      "slope": {
+        "name": "斜坡",
+        "templates": {
+          "far": "前方{distance}米{direction}有斜坡",
+          "near": "{direction}{distance}米有斜坡，请减速",
+          "danger": "危险！{direction}{distance}米有斜坡，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有斜坡"
+        }
+      },
+      "water": {
+        "name": "积水",
+        "templates": {
+          "far": "前方{distance}米{direction}有积水",
+          "near": "{direction}{distance}米有积水，请减速",
+          "danger": "危险！{direction}{distance}米有积水，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有积水"
+        }
+      },
+      "ice": {
+        "name": "冰面",
+        "templates": {
+          "far": "前方{distance}米{direction}有冰面",
+          "near": "{direction}{distance}米有冰面，请减速",
+          "danger": "危险！{direction}{distance}米有冰面，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有冰面"
+        }
+      },
+      "manhole": {
+        "name": "井盖",
+        "templates": {
+          "far": "前方{distance}米{direction}有井盖",
+          "near": "{direction}{distance}米有井盖，请减速",
+          "danger": "危险！{direction}{distance}米有井盖，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有井盖"
+        }
+      },
+      "construction": {
+        "name": "施工区域",
+        "templates": {
+          "far": "前方{distance}米{direction}有施工区域",
+          "near": "{direction}{distance}米有施工区域，请减速",
+          "danger": "危险！{direction}{distance}米有施工区域，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有施工区域"
+        }
+      }
+    },
+    "blind_path": {
+      "blind_path_start": {
+        "name": "盲道起点",
+        "templates": {
+          "far": "前方{distance}米{direction}有盲道起点",
+          "near": "{direction}{distance}米有盲道起点，请减速",
+          "danger": "注意！{direction}{distance}米有盲道起点",
+          "emergency": "注意！{direction}{distance}米有盲道起点"
+        }
+      },
+      "blind_path_end": {
+        "name": "盲道终点",
+        "templates": {
+          "far": "前方{distance}米{direction}有盲道终点",
+          "near": "{direction}{distance}米有盲道终点，请减速",
+          "danger": "注意！{direction}{distance}米有盲道终点",
+          "emergency": "注意！{direction}{distance}米有盲道终点"
+        }
+      },
+      "blind_path_turn": {
+        "name": "盲道转弯",
+        "templates": {
+          "far": "前方{distance}米{direction}有盲道转弯",
+          "near": "{direction}{distance}米有盲道转弯，请减速",
+          "danger": "注意！{direction}{distance}米有盲道转弯",
+          "emergency": "注意！{direction}{distance}米有盲道转弯"
+        }
+      },
+      "blind_path_intersection": {
+        "name": "盲道交叉口",
+        "templates": {
+          "far": "前方{distance}米{direction}有盲道交叉口",
+          "near": "{direction}{distance}米有盲道交叉口，请减速",
+          "danger": "注意！{direction}{distance}米有盲道交叉口",
+          "emergency": "注意！{direction}{distance}米有盲道交叉口"
+        }
+      }
+    },
+    "building": {
+      "wall": {
+        "name": "墙壁",
+        "templates": {
+          "far": "前方{distance}米{direction}有墙壁",
+          "near": "{direction}{distance}米有墙壁，请减速",
+          "danger": "危险！{direction}{distance}米有墙壁，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有墙壁"
+        }
+      },
+      "door": {
+        "name": "门",
+        "templates": {
+          "far": "前方{distance}米{direction}有门",
+          "near": "{direction}{distance}米有门，请减速",
+          "danger": "注意！{direction}{distance}米有门",
+          "emergency": "注意！{direction}{distance}米有门"
+        }
+      },
+      "window": {
+        "name": "窗户",
+        "templates": {
+          "far": "前方{distance}米{direction}有窗户",
+          "near": "{direction}{distance}米有窗户，请减速",
+          "danger": "注意！{direction}{distance}米有窗户",
+          "emergency": "注意！{direction}{distance}米有窗户"
+        }
+      },
+      "column": {
+        "name": "柱子",
+        "templates": {
+          "far": "前方{distance}米{direction}有柱子",
+          "near": "{direction}{distance}米有柱子，请减速",
+          "danger": "危险！{direction}{distance}米有柱子，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有柱子"
+        }
+      }
+    },
+    "animal": {
+      "dog": {
+        "name": "狗",
+        "templates": {
+          "far": "前方{distance}米{direction}有狗",
+          "near": "{direction}{distance}米有狗，请减速",
+          "danger": "危险！{direction}{distance}米有狗，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有狗"
+        }
+      },
+      "cat": {
+        "name": "猫",
+        "templates": {
+          "far": "前方{distance}米{direction}有猫",
+          "near": "{direction}{distance}米有猫，请减速",
+          "danger": "危险！{direction}{distance}米有猫，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有猫"
+        }
+      },
+      "bird": {
+        "name": "鸟",
+        "templates": {
+          "far": "前方{distance}米{direction}有鸟",
+          "near": "{direction}{distance}米有鸟，请减速",
+          "danger": "危险！{direction}{distance}米有鸟，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有鸟"
+        }
+      },
+      "pigeon": {
+        "name": "鸽子",
+        "templates": {
+          "far": "前方{distance}米{direction}有鸽子",
+          "near": "{direction}{distance}米有鸽子，请减速",
+          "danger": "危险！{direction}{distance}米有鸽子，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有鸽子"
+        }
+      }
+    },
+    "furniture": {
+      "chair": {
+        "name": "椅子",
+        "templates": {
+          "far": "前方{distance}米{direction}有椅子",
+          "near": "{direction}{distance}米有椅子，请减速",
+          "danger": "危险！{direction}{distance}米有椅子，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有椅子"
+        }
+      },
+      "sofa": {
+        "name": "沙发",
+        "templates": {
+          "far": "前方{distance}米{direction}有沙发",
+          "near": "{direction}{distance}米有沙发，请减速",
+          "danger": "危险！{direction}{distance}米有沙发，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有沙发"
+        }
+      },
+      "bed": {
+        "name": "床",
+        "templates": {
+          "far": "前方{distance}米{direction}有床",
+          "near": "{direction}{distance}米有床，请减速",
+          "danger": "危险！{direction}{distance}米有床，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有床"
+        }
+      },
+      "table": {
+        "name": "餐桌",
+        "templates": {
+          "far": "前方{distance}米{direction}有餐桌",
+          "near": "{direction}{distance}米有餐桌，请减速",
+          "danger": "危险！{direction}{distance}米有餐桌，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有餐桌"
+        }
+      },
+      "bench": {
+        "name": "长凳",
+        "templates": {
+          "far": "前方{distance}米{direction}有长凳",
+          "near": "{direction}{distance}米有长凳，请减速",
+          "danger": "危险！{direction}{distance}米有长凳，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有长凳"
+        }
+      }
+    },
+    "object": {
+      "backpack": {
+        "name": "背包",
+        "templates": {
+          "far": "前方{distance}米{direction}有背包",
+          "near": "{direction}{distance}米有背包，请减速",
+          "danger": "危险！{direction}{distance}米有背包，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有背包"
+        }
+      },
+      "umbrella": {
+        "name": "雨伞",
+        "templates": {
+          "far": "前方{distance}米{direction}有雨伞",
+          "near": "{direction}{distance}米有雨伞，请减速",
+          "danger": "危险！{direction}{distance}米有雨伞，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有雨伞"
+        }
+      },
+      "handbag": {
+        "name": "手提包",
+        "templates": {
+          "far": "前方{distance}米{direction}有手提包",
+          "near": "{direction}{distance}米有手提包，请减速",
+          "danger": "危险！{direction}{distance}米有手提包，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有手提包"
+        }
+      },
+      "trash_bin": {
+        "name": "垃圾桶",
+        "templates": {
+          "far": "前方{distance}米{direction}有垃圾桶",
+          "near": "{direction}{distance}米有垃圾桶，请减速",
+          "danger": "危险！{direction}{distance}米有垃圾桶，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有垃圾桶"
+        }
+      },
+      "stall": {
+        "name": "摊位",
+        "templates": {
+          "far": "前方{distance}米{direction}有摊位",
+          "near": "{direction}{distance}米有摊位，请减速",
+          "danger": "危险！{direction}{distance}米有摊位，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有摊位"
+        }
+      }
+    },
+    "kitchen": {
+      "bottle": {
+        "name": "瓶子",
+        "templates": {
+          "far": "前方{distance}米{direction}有瓶子",
+          "near": "{direction}{distance}米有瓶子，请减速",
+          "danger": "危险！{direction}{distance}米有瓶子，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有瓶子"
+        }
+      },
+      "cup": {
+        "name": "杯子",
+        "templates": {
+          "far": "前方{distance}米{direction}有杯子",
+          "near": "{direction}{distance}米有杯子，请减速",
+          "danger": "危险！{direction}{distance}米有杯子，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有杯子"
+        }
+      },
+      "bowl": {
+        "name": "碗",
+        "templates": {
+          "far": "前方{distance}米{direction}有碗",
+          "near": "{direction}{distance}米有碗，请减速",
+          "danger": "危险！{direction}{distance}米有碗，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有碗"
+        }
+      }
+    },
+    "food": {
+      "banana": {
+        "name": "香蕉",
+        "templates": {
+          "far": "前方{distance}米{direction}有香蕉",
+          "near": "{direction}{distance}米有香蕉，请减速",
+          "danger": "危险！{direction}{distance}米有香蕉，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有香蕉"
+        }
+      },
+      "apple": {
+        "name": "苹果",
+        "templates": {
+          "far": "前方{distance}米{direction}有苹果",
+          "near": "{direction}{distance}米有苹果，请减速",
+          "danger": "危险！{direction}{distance}米有苹果，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有苹果"
+        }
+      },
+      "sandwich": {
+        "name": "三明治",
+        "templates": {
+          "far": "前方{distance}米{direction}有三明治",
+          "near": "{direction}{distance}米有三明治，请减速",
+          "danger": "危险！{direction}{distance}米有三明治，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有三明治"
+        }
+      }
+    },
+    "traffic": {
+      "traffic_light": {
+        "name": "交通灯",
+        "templates": {
+          "far": "前方{distance}米{direction}有交通灯",
+          "near": "{direction}{distance}米有交通灯，请减速",
+          "danger": "注意！{direction}{distance}米有交通灯",
+          "emergency": "注意！{direction}{distance}米有交通灯"
+        }
+      },
+      "stop_sign": {
+        "name": "停车标志",
+        "templates": {
+          "far": "前方{distance}米{direction}有停车标志",
+          "near": "{direction}{distance}米有停车标志，请减速",
+          "danger": "注意！{direction}{distance}米有停车标志",
+          "emergency": "注意！{direction}{distance}米有停车标志"
+        }
+      },
+      "fire_hydrant": {
+        "name": "消防栓",
+        "templates": {
+          "far": "前方{distance}米{direction}有消防栓",
+          "near": "{direction}{distance}米有消防栓，请减速",
+          "danger": "危险！{direction}{distance}米有消防栓，立即减速！",
+          "emergency": "危险！立即停止！{direction}{distance}米有消防栓"
+        }
+      },
+      "parking_meter": {
+        "name": "停车计时器",
+        "templates": {
+          "far": "前方{distance}米{direction}有停车计时器",
+          "near": "{direction}{distance}米有停车计时器，请减速",
+          "danger": "注意！{direction}{distance}米有停车计时器",
+          "emergency": "注意！{direction}{distance}米有停车计时器"
+        }
+      }
+    }
+  },
+  "class_mapping": {
+    "0": ["dynamic", "person"],
+    "1": ["dynamic", "person_bicycle"],
+    "2": ["dynamic", "person_motorcycle"],
+    "3": ["vehicle", "car"],
+    "4": ["vehicle", "motorcycle"],
+    "5": ["vehicle", "airplane"],
+    "6": ["vehicle", "bus"],
+    "7": ["vehicle", "train"],
+    "8": ["vehicle", "truck"],
+    "9": ["vehicle", "boat"],
+    "10": ["traffic", "traffic_light"],
+    "11": ["traffic", "fire_hydrant"],
+    "12": ["traffic", "stop_sign"],
+    "13": ["traffic", "parking_meter"],
+    "14": ["furniture", "bench"],
+    "15": ["animal", "bird"],
+    "16": ["animal", "cat"],
+    "17": ["animal", "dog"],
+    "18": ["animal", "horse"],
+    "19": ["animal", "sheep"],
+    "20": ["animal", "cow"],
+    "21": ["animal", "elephant"],
+    "22": ["animal", "bear"],
+    "23": ["animal", "zebra"],
+    "24": ["animal", "giraffe"],
+    "25": ["object", "backpack"],
+    "26": ["object", "umbrella"],
+    "27": ["object", "handbag"],
+    "28": ["object", "tie"],
+    "29": ["object", "suitcase"],
+    "30": ["sport", "frisbee"],
+    "31": ["sport", "skis"],
+    "32": ["sport", "snowboard"],
+    "33": ["sport", "sports_ball"],
+    "34": ["sport", "kite"],
+    "35": ["sport", "baseball_bat"],
+    "36": ["sport", "baseball_glove"],
+    "37": ["sport", "skateboard"],
+    "38": ["sport", "surfboard"],
+    "39": ["sport", "tennis_racket"],
+    "40": ["kitchen", "bottle"],
+    "41": ["kitchen", "wine_glass"],
+    "42": ["kitchen", "cup"],
+    "43": ["kitchen", "fork"],
+    "44": ["kitchen", "knife"],
+    "45": ["kitchen", "spoon"],
+    "46": ["kitchen", "bowl"],
+    "47": ["food", "banana"],
+    "48": ["food", "apple"],
+    "49": ["food", "sandwich"],
+    "50": ["food", "orange"],
+    "51": ["food", "broccoli"],
+    "52": ["food", "carrot"],
+    "53": ["food", "hot_dog"],
+    "54": ["food", "pizza"],
+    "55": ["food", "donut"],
+    "56": ["food", "cake"],
+    "57": ["furniture", "chair"],
+    "58": ["furniture", "sofa"],
+    "59": ["furniture", "potted_plant"],
+    "60": ["furniture", "bed"],
+    "61": ["furniture", "table"],
+    "62": ["furniture", "toilet"],
+    "63": ["furniture", "tv"],
+    "64": ["furniture", "laptop"],
+    "65": ["furniture", "mouse"],
+    "66": ["furniture", "remote"],
+    "67": ["furniture", "keyboard"],
+    "68": ["furniture", "cell_phone"],
+    "69": ["furniture", "microwave"],
+    "70": ["furniture", "oven"],
+    "71": ["furniture", "toaster"],
+    "72": ["furniture", "sink"],
+    "73": ["furniture", "refrigerator"],
+    "74": ["furniture", "book"],
+    "75": ["furniture", "clock"],
+    "76": ["furniture", "vase"],
+    "77": ["furniture", "scissors"],
+    "78": ["furniture", "teddy_bear"],
+    "79": ["furniture", "hair_drier"],
+    "80": ["furniture", "toothbrush"]
+  },
+  "generic_templates": {
+    "far": "前方{distance}米{direction}有障碍物",
+    "near": "{direction}{distance}米有障碍物，请减速",
+    "danger": "危险！{direction}{distance}米有障碍物，立即减速！",
+    "emergency": "危险！立即停止！{direction}{distance}米有障碍物"
+  },
+  "special_scenarios": {
+    "multiple_obstacles": "前方发现多个障碍物，请小心",
+    "narrow_passage": "通道狭窄，请减速通过",
+    "blind_corner": "盲角转弯，请减速",
+    "construction_area": "施工区域，请绕行",
+    "wet_surface": "地面湿滑，请小心",
+    "high_risk_vehicle": "高风险车辆接近，请立即避让",
+    "moving_person": "有行人移动，请减速",
+    "static_obstacle": "静态障碍物，请绕行",
+    "blind_path_obstruction": "盲道被占用，请绕行",
+    "crosswalk": "人行横道，请减速",
+    "stairs": "台阶，请减速",
+    "escalator": "自动扶梯，请减速",
+    "elevator": "电梯，请减速"
+  }
+} 

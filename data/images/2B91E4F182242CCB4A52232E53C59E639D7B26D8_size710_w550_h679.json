@@ -1,0 +1,297 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\2B91E4F182242CCB4A52232E53C59E639D7B26D8_size710_w550_h679.png",
+  "image_size": [
+    550,
+    679
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959801.513414,
+      "bbox": null,
+      "points": [
+        [
+          337,
+          588
+        ],
+        [
+          355,
+          674
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959803.1669514,
+      "bbox": null,
+      "points": [
+        [
+          330,
+          587
+        ],
+        [
+          234,
+          585
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959804.5657566,
+      "bbox": null,
+      "points": [
+        [
+          234,
+          584
+        ],
+        [
+          232,
+          371
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959805.8383853,
+      "bbox": null,
+      "points": [
+        [
+          232,
+          371
+        ],
+        [
+          360,
+          358
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959807.081183,
+      "bbox": null,
+      "points": [
+        [
+          361,
+          357
+        ],
+        [
+          341,
+          283
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 5,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959808.6558049,
+      "bbox": null,
+      "points": [
+        [
+          341,
+          283
+        ],
+        [
+          380,
+          276
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 6,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959811.3531346,
+      "bbox": null,
+      "points": [
+        [
+          380,
+          276
+        ],
+        [
+          333,
+          166
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 7,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959814.1114388,
+      "bbox": null,
+      "points": [
+        [
+          258,
+          102
+        ],
+        [
+          288,
+          298
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 8,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959815.2934523,
+      "bbox": null,
+      "points": [
+        [
+          288,
+          298
+        ],
+        [
+          180,
+          307
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 9,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758959817.1043928,
+      "bbox": null,
+      "points": [
+        [
+          180,
+          307
+        ],
+        [
+          121,
+          676
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 10,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758959821.735516,
+      "bbox": [
+        51,
+        6,
+        393,
+        249
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 11,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758959823.8055956,
+      "bbox": [
+        442,
+        14,
+        541,
+        372
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 12,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1758959828.4243085,
+      "bbox": [
+        210,
+        342,
+        527,
+        621
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1758959830.4258137
+}

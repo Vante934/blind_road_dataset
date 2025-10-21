@@ -1,0 +1,75 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_XHS_17601026523111040g008318sv957346004a5g.jpg",
+  "image_size": [
+    1080,
+    810
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760489507.0843494,
+      "bbox": [
+        0,
+        311,
+        455,
+        609
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489510.8967216,
+      "bbox": null,
+      "points": [
+        [
+          228,
+          585
+        ],
+        [
+          602,
+          809
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760489513.6539948,
+      "bbox": null,
+      "points": [
+        [
+          300,
+          566
+        ],
+        [
+          779,
+          809
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760489515.4258711
+}

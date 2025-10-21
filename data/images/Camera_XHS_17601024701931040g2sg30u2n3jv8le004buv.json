@@ -1,0 +1,259 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\Camera_XHS_17601024701931040g2sg30u2n3jv8le004buv.jpg",
+  "image_size": [
+    1440,
+    2560
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1760488863.1044805,
+      "bbox": [
+        578,
+        999,
+        1253,
+        1438
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488867.3144817,
+      "bbox": null,
+      "points": [
+        [
+          323,
+          2531
+        ],
+        [
+          523,
+          1863
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488868.5810082,
+      "bbox": null,
+      "points": [
+        [
+          523,
+          1853
+        ],
+        [
+          0,
+          1765
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488870.4056942,
+      "bbox": null,
+      "points": [
+        [
+          4,
+          1493
+        ],
+        [
+          429,
+          888
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488871.5938969,
+      "bbox": null,
+      "points": [
+        [
+          443,
+          869
+        ],
+        [
+          804,
+          898
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 5,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488874.422586,
+      "bbox": null,
+      "points": [
+        [
+          806,
+          869
+        ],
+        [
+          1065,
+          2
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 6,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488877.4163969,
+      "bbox": null,
+      "points": [
+        [
+          823,
+          2531
+        ],
+        [
+          914,
+          1654
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 7,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488878.8760178,
+      "bbox": null,
+      "points": [
+        [
+          902,
+          1633
+        ],
+        [
+          302,
+          1551
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 8,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488880.1918395,
+      "bbox": null,
+      "points": [
+        [
+          299,
+          1551
+        ],
+        [
+          561,
+          989
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 9,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488881.3036747,
+      "bbox": null,
+      "points": [
+        [
+          561,
+          984
+        ],
+        [
+          986,
+          1006
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 10,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488883.4629412,
+      "bbox": null,
+      "points": [
+        [
+          986,
+          1006
+        ],
+        [
+          1111,
+          19
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760488884.6583993
+}

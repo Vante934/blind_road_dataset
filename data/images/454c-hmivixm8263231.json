@@ -1,0 +1,94 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\454c-hmivixm8263231.jpg",
+  "image_size": [
+    2048,
+    2731
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "ground_anomaly",
+      "class_name": "地面异常",
+      "confidence": 1.0,
+      "timestamp": 1760487984.4092536,
+      "bbox": [
+        613,
+        893,
+        1461,
+        1462
+      ],
+      "points": null,
+      "color": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "dynamic_obstacle",
+      "class_name": "动态障碍",
+      "confidence": 1.0,
+      "timestamp": 1760487991.6174197,
+      "bbox": [
+        1446,
+        10,
+        2005,
+        1532
+      ],
+      "points": null,
+      "color": [
+        255,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760487998.2751396,
+      "bbox": null,
+      "points": [
+        [
+          519,
+          2688
+        ],
+        [
+          792,
+          0
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1760488012.8787858,
+      "bbox": null,
+      "points": [
+        [
+          1565,
+          2696
+        ],
+        [
+          901,
+          4
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    }
+  ],
+  "timestamp": 1760488026.742004
+}

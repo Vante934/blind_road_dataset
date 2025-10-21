@@ -1,0 +1,46 @@
+{
+  "voice_settings": {
+    "rate": 1.0,
+    "volume": 0.8,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "language": "zh-CN"
+  },
+  "optimization_settings": {
+    "max_message_length": 50,
+    "segment_delay": 1.0,
+    "message_cooldown": 3.0,
+    "max_recent_messages": 10,
+    "enable_deduplication": true,
+    "enable_segmentation": true
+  },
+  "priority_settings": {
+    "obstacle_priority": {
+      "high_risk": 4,
+      "medium_risk": 3,
+      "low_risk": 2
+    },
+    "environment_priority": {
+      "high_risk": 3,
+      "medium_risk": 2,
+      "low_risk": 1
+    },
+    "emergency_priority": 4
+  },
+  "content_filters": {
+    "max_obstacles_per_message": 1,
+    "max_environment_info_per_message": 1,
+    "max_emergency_alerts_per_message": 1,
+    "enable_smart_summary": true
+  },
+  "hardware_settings": {
+    "vibration_enabled": true,
+    "buzzer_enabled": true,
+    "buzzer_volume": 90,
+    "vibration_intensity": {
+      "high": 1.0,
+      "medium": 0.6,
+      "low": 0.3
+    }
+  }
+}
+

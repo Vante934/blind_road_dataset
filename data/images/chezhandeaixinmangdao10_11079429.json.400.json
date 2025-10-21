@@ -1,0 +1,75 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\chezhandeaixinmangdao10_11079429.jpg.400.jpg",
+  "image_size": [
+    533,
+    400
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960500.4602401,
+      "bbox": null,
+      "points": [
+        [
+          366,
+          397
+        ],
+        [
+          388,
+          196
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758960502.419665,
+      "bbox": null,
+      "points": [
+        [
+          378,
+          196
+        ],
+        [
+          316,
+          397
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758960506.7833643,
+      "bbox": [
+        340,
+        90,
+        426,
+        236
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    }
+  ],
+  "timestamp": 1758960507.8998795
+}

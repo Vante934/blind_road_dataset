@@ -1,0 +1,177 @@
+# 云服务器部署配置文件
+
+# 云平台配置
+platform: "auto"  # auto, aws, gcp, azure, aliyun
+region: "us-west-2"
+instance_type: "g4dn.xlarge"  # GPU实例类型
+
+# AWS配置
+aws:
+  image_id: "ami-0c02fb55956c7d316"  # Deep Learning AMI
+  key_name: "blind-road-key"
+  security_groups: ["blind-road-sg"]
+  storage_size: 100  # GB
+  storage_type: "gp3"
+  max_price: 2.0  # USD per hour
+
+# GCP配置
+gcp:
+  project_id: "your-project-id"
+  zone: "us-west1-a"
+  machine_type: "n1-standard-4"
+  accelerator_type: "nvidia-tesla-t4"
+  accelerator_count: 1
+  disk_size: 100  # GB
+  disk_type: "pd-ssd"
+
+# Azure配置
+azure:
+  resource_group: "blind-road-rg"
+  location: "West US 2"
+  vm_size: "Standard_NC6s_v3"
+  image: "microsoft-dsvm:ubuntu-1804:1804:latest"
+  disk_size: 100  # GB
+
+# 阿里云配置
+aliyun:
+  region_id: "cn-hangzhou"
+  instance_type: "ecs.gn6i-c4g1.xlarge"
+  image_id: "ubuntu_18_04_64_20G_alibase_20200220.vhd"
+  disk_size: 100  # GB
+
+# 项目文件配置
+project_files:
+  - "advanced_training_system.py"
+  - "dataset_downloader.py"
+  - "training_config.yaml"
+  - "requirements.txt"
+  - "datasets/"
+  - "models/"
+  - "core/"
+  - "modules/"
+
+# 环境配置
+environment:
+  python_version: "3.8"
+  cuda_version: "11.8"
+  pytorch_version: "2.0.0"
+  auto_install_deps: true
+  create_venv: true
+
+# 训练配置
+training:
+  auto_start: true
+  background_mode: true
+  log_level: "INFO"
+  save_interval: 3600  # 秒
+  max_training_time: 28800  # 8小时
+
+# 监控配置
+monitoring:
+  enabled: true
+  check_interval: 300  # 5分钟
+  alert_email: "your-email@example.com"
+  webhook_url: ""
+
+# 自动关闭配置
+auto_shutdown:
+  enabled: true
+  shutdown_hours: 8
+  save_before_shutdown: true
+  download_results: true
+
+# 安全配置
+security:
+  ssh_key_path: "~/.ssh/blind-road-key.pem"
+  allowed_ips: []  # 空列表表示允许所有IP
+  firewall_rules:
+    - port: 22
+      protocol: "tcp"
+      source: "0.0.0.0/0"
+    - port: 8080
+      protocol: "tcp"
+      source: "0.0.0.0/0"
+    - port: 8888
+      protocol: "tcp"
+      source: "0.0.0.0/0"
+
+# 成本控制
+cost_control:
+  max_cost_per_hour: 5.0  # USD
+  auto_terminate_on_error: true
+  spot_instance: false
+  reserved_instance: false
+
+# 数据存储配置
+storage:
+  use_s3: false
+  s3_bucket: "blind-road-datasets"
+  local_storage_path: "/opt/blind-road-detection/data"
+  backup_enabled: true
+  backup_interval: 3600  # 秒
+
+# 日志配置
+logging:
+  level: "INFO"
+  file_path: "/opt/blind-road-detection/training.log"
+  max_size: 100  # MB
+  backup_count: 5
+  remote_logging: false
+
+# 通知配置
+notifications:
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: ""
+    password: ""
+    to_addresses: []
+  
+  webhook:
+    enabled: false
+    url: ""
+    events: ["training_start", "training_complete", "training_error"]
+  
+  slack:
+    enabled: false
+    webhook_url: ""
+    channel: "#training"
+
+# 实验跟踪
+experiment_tracking:
+  use_wandb: false
+  wandb_project: "blind-road-detection"
+  wandb_entity: ""
+  wandb_api_key: ""
+  
+  use_mlflow: false
+  mlflow_tracking_uri: "http://localhost:5000"
+  
+  use_tensorboard: true
+  tensorboard_log_dir: "/opt/blind-road-detection/logs"
+
+# 模型导出配置
+model_export:
+  formats: ["torchscript", "onnx", "tflite"]
+  optimize_for_mobile: true
+  quantization: false
+  compression: true
+
+# 部署后操作
+post_deployment:
+  run_health_check: true
+  run_basic_tests: true
+  setup_monitoring: true
+  configure_logging: true
+  setup_backups: true
+
+
+
+
+
+
+
+
+
+

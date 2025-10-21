@@ -1,0 +1,138 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/images/u=1606368748,866878351&fm=253&fmt=auto&app=138&f=JPEG.jpg",
+  "annotations": [
+    {
+      "start": [
+        487,
+        840
+      ],
+      "end": [
+        487,
+        840
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        495,
+        809
+      ],
+      "end": [
+        495,
+        809
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        202,
+        728
+      ],
+      "end": [
+        202,
+        728
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        449,
+        494
+      ],
+      "end": [
+        449,
+        494
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        645,
+        514
+      ],
+      "end": [
+        645,
+        514
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        775,
+        312
+      ],
+      "end": [
+        775,
+        312
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        685,
+        840
+      ],
+      "end": [
+        685,
+        840
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        708,
+        726
+      ],
+      "end": [
+        708,
+        726
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        414,
+        675
+      ],
+      "end": [
+        414,
+        674
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        522,
+        550
+      ],
+      "end": [
+        522,
+        549
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        753,
+        573
+      ],
+      "end": [
+        753,
+        573
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        863,
+        179
+      ],
+      "end": [
+        863,
+        179
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752982269.9716682
+}

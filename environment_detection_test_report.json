@@ -1,0 +1,67 @@
+{
+  "timestamp": "2025-09-27 11:11:57",
+  "success_rate": 100.0,
+  "avg_detection_time": 0.0415003776550293,
+  "scenarios": {
+    "normal": {
+      "detection_time": 0.0663154125213623,
+      "safety_level": "safe",
+      "safety_score": 0.9,
+      "has_environment_info": true
+    },
+    "rain": {
+      "detection_time": 0.043833017349243164,
+      "safety_level": "medium_risk",
+      "safety_score": 0.48000000000000004,
+      "has_environment_info": true
+    },
+    "fog": {
+      "detection_time": 0.03627324104309082,
+      "safety_level": "medium_risk",
+      "safety_score": 0.5571428571428572,
+      "has_environment_info": true
+    },
+    "snow": {
+      "detection_time": 0.037843942642211914,
+      "safety_level": "medium_risk",
+      "safety_score": 0.47647058823529415,
+      "has_environment_info": true
+    },
+    "dark": {
+      "detection_time": 0.03847837448120117,
+      "safety_level": "safe",
+      "safety_score": 0.6666666666666666,
+      "has_environment_info": true
+    },
+    "bright": {
+      "detection_time": 0.03882861137390137,
+      "safety_level": "medium_risk",
+      "safety_score": 0.5727272727272726,
+      "has_environment_info": true
+    },
+    "wet_surface": {
+      "detection_time": 0.03772616386413574,
+      "safety_level": "medium_risk",
+      "safety_score": 0.46666666666666673,
+      "has_environment_info": true
+    },
+    "uneven_surface": {
+      "detection_time": 0.039017438888549805,
+      "safety_level": "safe",
+      "safety_score": 0.9,
+      "has_environment_info": true
+    },
+    "construction": {
+      "detection_time": 0.039278268814086914,
+      "safety_level": "medium_risk",
+      "safety_score": 0.48000000000000004,
+      "has_environment_info": true
+    },
+    "intersection": {
+      "detection_time": 0.037409305572509766,
+      "safety_level": "medium_risk",
+      "safety_score": 0.5111111111111111,
+      "has_environment_info": true
+    }
+  }
+}

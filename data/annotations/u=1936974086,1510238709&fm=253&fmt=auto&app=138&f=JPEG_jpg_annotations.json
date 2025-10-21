@@ -1,0 +1,105 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/images/u=1936974086,1510238709&fm=253&fmt=auto&app=138&f=JPEG.jpg",
+  "annotations": [
+    {
+      "start": [
+        379,
+        986
+      ],
+      "end": [
+        379,
+        986
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        517,
+        523
+      ],
+      "end": [
+        517,
+        523
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        498,
+        512
+      ],
+      "end": [
+        498,
+        512
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        502,
+        495
+      ],
+      "end": [
+        502,
+        495
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        544,
+        979
+      ],
+      "end": [
+        544,
+        979
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        571,
+        518
+      ],
+      "end": [
+        571,
+        518
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        594,
+        518
+      ],
+      "end": [
+        595,
+        517
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        595,
+        493
+      ],
+      "end": [
+        595,
+        493
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        506,
+        493
+      ],
+      "end": [
+        506,
+        493
+      ],
+      "type": "blind_path_line"
+    }
+  ],
+  "timestamp": 1752982322.7788813
+}

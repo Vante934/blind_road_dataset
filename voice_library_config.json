@@ -1,0 +1,162 @@
+{
+  "obstacle_types": {
+    "vehicle": {
+      "name": "车辆类",
+      "items": {
+        "car": "前方有汽车，请注意避让",
+        "truck": "前方有卡车，请小心通过",
+        "motorcycle": "前方有摩托车，请注意安全",
+        "bicycle": "前方有自行车，请减速慢行",
+        "bus": "前方有公交车，请等待其通过",
+        "ambulance": "前方有救护车，请立即让行",
+        "police_car": "前方有警车，请避让"
+      }
+    },
+    "person": {
+      "name": "人员类",
+      "items": {
+        "pedestrian": "前方有行人，请减速慢行",
+        "child": "前方有儿童，请特别小心",
+        "elderly": "前方有老人，请减速让行",
+        "wheelchair": "前方有轮椅使用者，请让行",
+        "group": "前方有多人聚集，请小心通过"
+      }
+    },
+    "object": {
+      "name": "物体类",
+      "items": {
+        "trash_bin": "前方有垃圾桶，请绕行",
+        "stall": "前方有摊位，请小心通过",
+        "furniture": "前方有家具，请注意避让",
+        "barrier": "前方有栏杆，请绕行",
+        "pole": "前方有柱子，请注意避让",
+        "tree": "前方有树木，请小心通过",
+        "sign": "前方有标志牌，请注意"
+      }
+    },
+    "ground_hazard": {
+      "name": "地面危险",
+      "items": {
+        "pothole": "前方有坑洼，请绕行",
+        "water": "前方有积水，请小心通过",
+        "ice": "前方有冰面，请特别小心",
+        "step": "前方有台阶，请小心上下",
+        "slope": "前方有斜坡，请减速通过",
+        "construction": "前方有施工区域，请绕行"
+      }
+    }
+  },
+  "route_guidance": {
+    "direction": {
+      "name": "方向指引",
+      "items": {
+        "straight": "请直行",
+        "turn_left": "请左转",
+        "turn_right": "请右转",
+        "u_turn": "请掉头",
+        "back": "请后退",
+        "stop": "请停止"
+      }
+    },
+    "path": {
+      "name": "路径提示",
+      "items": {
+        "blind_path": "盲道清晰，请沿盲道前进",
+        "path_interrupted": "盲道中断，请寻找其他路径",
+        "narrow_path": "通道狭窄，请减速通过",
+        "wide_path": "通道宽敞，可以正常通过",
+        "path_end": "盲道结束，请寻找新的路径",
+        "path_start": "盲道开始，请沿盲道前进"
+      }
+    },
+    "navigation": {
+      "name": "导航提示",
+      "items": {
+        "destination_near": "目的地接近，请减速",
+        "wrong_direction": "方向错误，请调整",
+        "keep_left": "请靠左行驶",
+        "keep_right": "请靠右行驶",
+        "center_path": "请走中间道路",
+        "sidewalk": "请走人行道"
+      }
+    }
+  },
+  "trajectory_prediction": {
+    "approaching": {
+      "name": "接近预测",
+      "items": {
+        "person_approaching": "有行人正在接近，请等待",
+        "vehicle_approaching": "有车辆正在接近，请避让",
+        "object_approaching": "有物体正在接近，请注意",
+        "fast_approaching": "有物体快速接近，请立即避让",
+        "slow_approaching": "有物体缓慢接近，请观察后通过"
+      }
+    },
+    "collision": {
+      "name": "碰撞预警",
+      "items": {
+        "collision_warning": "预测可能发生碰撞，请立即停止",
+        "path_crossing": "预测路径交叉，请谨慎通过",
+        "safe_passage": "预测安全，可以正常通过",
+        "high_risk": "高风险区域，请特别小心",
+        "low_risk": "低风险区域，可以正常通过"
+      }
+    },
+    "movement": {
+      "name": "运动预测",
+      "items": {
+        "moving_away": "物体正在远离，可以继续前进",
+        "moving_towards": "物体正在靠近，请准备避让",
+        "stationary": "物体静止，可以安全通过",
+        "unpredictable": "物体运动不可预测，请特别小心"
+      }
+    }
+  },
+  "environment_awareness": {
+    "weather": {
+      "name": "天气状况",
+      "items": {
+        "sunny": "天气晴朗，环境良好，可以正常出行",
+        "rainy": "正在下雨，路面湿滑，请小心行走",
+        "foggy": "有雾，能见度较低，请减速慢行",
+        "night": "夜晚光线较暗，请注意安全",
+        "cloudy": "天气多云，环境一般，请正常注意",
+        "windy": "有风，请注意安全",
+        "snowy": "下雪天气，路面湿滑，请特别小心"
+      }
+    },
+    "sound": {
+      "name": "声音提示",
+      "items": {
+        "car_horn": "前方有汽车鸣笛，请注意安全",
+        "construction": "前方有施工噪音，请减速通过",
+        "alarm": "前方有警报声，请提高警惕",
+        "siren": "前方有警笛声，请立即避让",
+        "traffic": "前方交通繁忙，请小心通过",
+        "quiet": "环境安静，可以正常前进",
+        "noisy": "环境嘈杂，请提高注意力"
+      }
+    },
+    "lighting": {
+      "name": "光线条件",
+      "items": {
+        "bright": "光线充足，视野良好",
+        "dim": "光线较暗，请小心前进",
+        "dark": "光线很暗，请特别小心",
+        "flashing": "有闪烁灯光，请注意",
+        "shadow": "有阴影区域，请小心通过"
+      }
+    },
+    "traffic": {
+      "name": "交通状况",
+      "items": {
+        "busy": "交通繁忙，请小心通过",
+        "quiet": "交通清静，可以正常前进",
+        "congested": "交通拥堵，请耐心等待",
+        "smooth": "交通顺畅，可以正常通过",
+        "rush_hour": "现在是高峰期，请特别小心"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,140 @@
+{
+  "image_path": "E:/Code/python/download/blind_road_dataset/data/images\\image_002.jpg",
+  "image_size": [
+    500,
+    711
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758602878.866998,
+      "bbox": null,
+      "points": [
+        [
+          0,
+          685
+        ],
+        [
+          212,
+          627
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 1,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758602881.2058775,
+      "bbox": null,
+      "points": [
+        [
+          212,
+          623
+        ],
+        [
+          254,
+          617
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 2,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758602884.6388774,
+      "bbox": null,
+      "points": [
+        [
+          55,
+          706
+        ],
+        [
+          221,
+          651
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 3,
+      "type": "blind_path",
+      "class_name": "盲道",
+      "confidence": 1.0,
+      "timestamp": 1758602886.0243728,
+      "bbox": null,
+      "points": [
+        [
+          223,
+          649
+        ],
+        [
+          261,
+          643
+        ]
+      ],
+      "color": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "id": 4,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758602890.9465451,
+      "bbox": [
+        251,
+        547,
+        410,
+        701
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "id": 5,
+      "type": "static_obstacle",
+      "class_name": "静态障碍",
+      "confidence": 1.0,
+      "timestamp": 1758602894.6996696,
+      "bbox": [
+        398,
+        237,
+        479,
+        677
+      ],
+      "points": null,
+      "color": [
+        0,
+        255,
+        0
+      ]
+    }
+  ],
+  "timestamp": 1758602899.293041
+}

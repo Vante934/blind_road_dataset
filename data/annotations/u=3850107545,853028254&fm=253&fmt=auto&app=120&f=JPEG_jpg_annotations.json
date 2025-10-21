@@ -1,0 +1,103 @@
+{
+  "image_path": "images\\u=3850107545,853028254&fm=253&fmt=auto&app=120&f=JPEG.jpg",
+  "annotations": [
+    {
+      "start": [
+        139,
+        614
+      ],
+      "end": [
+        183,
+        413
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        183,
+        413
+      ],
+      "end": [
+        76,
+        413
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        76,
+        413
+      ],
+      "end": [
+        109,
+        366
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        109,
+        366
+      ],
+      "end": [
+        365,
+        371
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        365,
+        371
+      ],
+      "end": [
+        384,
+        413
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        384,
+        413
+      ],
+      "end": [
+        284,
+        412
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        284,
+        412
+      ],
+      "end": [
+        284,
+        412
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "start": [
+        284,
+        412
+      ],
+      "end": [
+        327,
+        666
+      ],
+      "type": "blind_path_line"
+    },
+    {
+      "type": "obstacle_box",
+      "box": [
+        27,
+        279,
+        301,
+        389
+      ]
+    }
+  ],
+  "timestamp": 1753010681.6873622
+}

@@ -1,0 +1,49 @@
+{
+  "voice_engines": {
+    "primary": "edge_tts",
+    "fallback": "pyttsx3"
+  },
+  "voice_settings": {
+    "rate": 1.0,
+    "volume": 0.8,
+    "voice": "zh-CN-XiaoxiaoNeural"
+  },
+  "message_templates": {
+    "obstacle_detected": "前方{distance}米{direction}有{obstacle_type}，请{direction}",
+    "high_risk": "危险！前方{distance}米有{obstacle_type}，请立即{direction}",
+    "emergency": "紧急！前方有{obstacle_type}，请立即停止！",
+    "safe_passage": "前方道路畅通，可以安全通过",
+    "pedestrian": "前方有行人，请减速慢行",
+    "vehicle": "前方有车辆，请绕行",
+    "construction": "前方有施工区域，请绕行",
+    "pothole": "前方有坑洞，请绕行"
+  },
+  "obstacle_types": {
+    "vehicle": "车辆",
+    "pedestrian": "行人",
+    "pothole": "坑洞",
+    "construction": "施工区域",
+    "trash_bin": "垃圾桶",
+    "street_light": "路灯杆",
+    "bicycle": "自行车",
+    "motorcycle": "摩托车"
+  },
+  "directions": {
+    "left": "左侧",
+    "right": "右侧",
+    "front": "前方",
+    "back": "后方"
+  },
+  "risk_levels": {
+    "low": "低风险",
+    "medium": "中风险", 
+    "high": "高风险",
+    "emergency": "紧急"
+  },
+  "azure_speech": {
+    "key": "",
+    "region": "eastus"
+  }
+}
+
+

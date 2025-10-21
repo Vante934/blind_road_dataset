@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color">
+
+    <!-- 相机预览区域 -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 控制面板 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/surface_color">
+
+        <!-- 状态显示 -->
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="准备就绪"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/status_background"
+            android:layout_marginBottom="12dp" />
+
+        <!-- 检测结果显示 -->
+        <TextView
+            android:id="@+id/detection_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="未检测到物体"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/log_background"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 按钮区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/start_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="开始检测"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/success_color" />
+
+            <Button
+                android:id="@+id/stop_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="停止检测"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:enabled="false"
+                android:backgroundTint="@color/error_color" />
+
+            <Button
+                android:id="@+id/collect_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="开始收集"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/accent_color" />
+
+            <Button
+                android:id="@+id/train_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="训练模型"
+                android:textSize="12sp"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/primary_color" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

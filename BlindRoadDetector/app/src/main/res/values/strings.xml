@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">盲道检测系统</string>
+    <string name="connection_test_title">连接测试</string>
+    <string name="server_config">服务器配置</string>
+    <string name="server_url_hint">服务器地址</string>
+    <string name="connect_button">连接服务器</string>
+    <string name="reconnect_button">重新连接</string>
+    <string name="connection_status">连接状态</string>
+    <string name="preparing_connection">准备连接服务器...</string>
+    <string name="connecting_server">正在连接服务器...</string>
+    <string name="connection_success">✅ 服务器连接成功</string>
+    <string name="connection_failed">❌ 服务器连接失败</string>
+    <string name="connection_error">❌ 连接异常</string>
+    <string name="function_test">功能测试</string>
+    <string name="test_detection">测试检测功能</string>
+    <string name="test_detection_success">✅ 检测测试成功</string>
+    <string name="test_detection_failed">❌ 检测测试失败</string>
+    <string name="operation_log">操作日志</string>
+    <string name="waiting_operation">等待操作...</string>
+    <string name="enter_server_address">请输入服务器地址</string>
+    <string name="connect_first">请先连接服务器</string>
+    <string name="permission_required">需要网络和相机权限才能使用此应用</string>
+    <string name="permission_camera_storage">需要相机和存储权限</string>
+</resources>

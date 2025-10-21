@@ -1,0 +1,4 @@
+blind_path
+static_obstacle
+dynamic_obstacle
+ground_anomaly

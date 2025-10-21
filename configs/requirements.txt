@@ -1,0 +1,7 @@
+opencv-python
+PyQt5
+ultralytics
+requests
+baidu-aip
+SpeechRecognition
+pyaudio 

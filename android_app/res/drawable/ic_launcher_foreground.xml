@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- 盲道检测图标 -->
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M54,20C35.1,20 20,35.1 20,54s15.1,34 34,34s34,-15.1 34,-34S72.9,20 54,20zM54,82C38.5,82 26,69.5 26,54S38.5,26 54,26s28,12.5 28,28S69.5,82 54,82z"/>
+    
+    <!-- 眼睛图标 -->
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M54,35c-10.5,0 -19,8.5 -19,19s8.5,19 19,19s19,-8.5 19,-19S64.5,35 54,35zM54,67c-7.2,0 -13,-5.8 -13,-13s5.8,-13 13,-13s13,5.8 13,13S61.2,67 54,67z"/>
+    
+    <!-- 瞳孔 -->
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M54,45c-5,0 -9,4 -9,9s4,9 9,9s9,-4 9,-9S59,45 54,45z"/>
+    
+    <!-- 检测线 -->
+    <path
+        android:fillColor="@color/accent_color"
+        android:pathData="M30,60L78,60"
+        android:strokeWidth="2"
+        android:strokeColor="@color/accent_color"/>
+    
+    <path
+        android:fillColor="@color/accent_color"
+        android:pathData="M30,65L78,65"
+        android:strokeWidth="2"
+        android:strokeColor="@color/accent_color"/>
+    
+    <path
+        android:fillColor="@color/accent_color"
+        android:pathData="M30,70L78,70"
+        android:strokeWidth="2"
+        android:strokeColor="@color/accent_color"/>
+</vector>
+

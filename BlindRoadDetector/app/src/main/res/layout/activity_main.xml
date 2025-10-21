@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <!-- 摄像头预览区域 -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        app:implementationMode="compatible" />
+
+    <!-- 检测结果显示区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#80000000"
+        android:padding="16dp">
+
+        <!-- 状态显示 -->
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="准备就绪"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 检测结果 -->
+        <TextView
+            android:id="@+id/detection_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="未检测到障碍物"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="#40000000"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 控制按钮区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- 开始检测按钮 -->
+            <Button
+                android:id="@+id/start_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="开始检测"
+                android:textColor="@color/white"
+                android:background="@drawable/button_green"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp" />
+
+            <!-- 停止检测按钮 -->
+            <Button
+                android:id="@+id/stop_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="停止检测"
+                android:textColor="@color/white"
+                android:background="@drawable/button_red"
+                android:layout_marginStart="8dp"
+                android:padding="12dp" />
+
+        </LinearLayout>
+
+        <!-- 设置按钮 -->
+        <Button
+            android:id="@+id/settings_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:background="@drawable/button_blue"
+            android:layout_marginTop="8dp"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

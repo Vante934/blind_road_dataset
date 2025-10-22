@@ -1,0 +1,41 @@
+{
+  "language": "zh-CN",
+  "voice_speed": 1.0,
+  "volume": 0.8,
+  "voice_engine": "pyttsx3",
+  "speech_recognition": "speech_recognition",
+  "voice_library": {
+    "obstacle_detected": "前方发现障碍物，请注意安全",
+    "blind_path_detected": "检测到盲道，可以安全通行",
+    "path_clear": "前方道路正常",
+    "turn_left": "请向左转",
+    "turn_right": "请向右转",
+    "go_straight": "请直行",
+    "stop": "请停止",
+    "system_start": "盲道检测系统已启动",
+    "system_stop": "盲道检测系统已停止",
+    "detection_start": "开始检测",
+    "detection_stop": "停止检测",
+    "error_occurred": "系统出现错误，请检查",
+    "battery_low": "电量不足，请充电",
+    "network_error": "网络连接异常",
+    "camera_error": "相机无法正常工作"
+  },
+  "speech_commands": {
+    "start": ["开始", "启动", "start", "begin"],
+    "stop": ["停止", "结束", "stop", "end"],
+    "status": ["状态", "情况", "status", "state"],
+    "help": ["帮助", "说明", "help", "manual"],
+    "volume_up": ["音量增大", "声音大点", "volume up"],
+    "volume_down": ["音量减小", "声音小点", "volume down"],
+    "speed_up": ["语速加快", "快一点", "speed up"],
+    "speed_down": ["语速减慢", "慢一点", "speed down"]
+  },
+  "recognition_settings": {
+    "timeout": 5.0,
+    "phrase_timeout": 0.5,
+    "energy_threshold": 300,
+    "dynamic_energy_threshold": true,
+    "pause_threshold": 0.8
+  }
+}

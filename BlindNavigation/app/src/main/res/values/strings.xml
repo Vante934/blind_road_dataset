@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">盲人导航</string>
+
+    <!-- 主屏幕功能名称 -->
+    <string name="navigation">导航</string>
+    <string name="obstacle_detection">障碍检测</string>
+    <string name="current_location">当前位置</string>
+    <string name="public_transport">公共交通</string>
+    <string name="assistance">求助</string>
+    <string name="settings">设置</string>
+
+    <!-- 无障碍服务描述 -->
+    <string name="accessibility_service_description">盲人导航辅助服务</string>
+
+    <!-- 功能描述 -->
+    <string name="navigation_desc">开始路径导航</string>
+    <string name="obstacle_detection_desc">检测周围障碍物</string>
+    <string name="current_location_desc">获取当前位置信息</string>
+    <string name="public_transport_desc">查询公共交通信息</string>
+    <string name="assistance_desc">寻求帮助</string>
+    <string name="settings_desc">应用设置</string>
+
+    <!-- 页面标题 -->
+    <string name="title_navigation">导航功能</string>
+    <string name="title_obstacle">障碍物检测</string>
+    <string name="title_location">当前位置</string>
+    <string name="title_transport">公共交通</string>
+    <string name="title_assistance">求助功能</string>
+    <string name="title_settings">设置</string>
+
+    <!-- 语音提示 -->
+    <string name="voice_navigation">导航功能已启动</string>
+    <string name="voice_obstacle">障碍物检测已开启</string>
+    <string name="voice_location">获取当前位置信息</string>
+    <string name="voice_transport">公共交通查询</string>
+    <string name="voice_assistance">求助功能已启动</string>
+    <string name="voice_settings">设置页面</string>
+</resources>

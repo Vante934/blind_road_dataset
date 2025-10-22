@@ -1,0 +1,41 @@
+{
+  "system": {
+    "name": "盲道检测系统",
+    "version": "1.0.0",
+    "description": "集成盲道检测、Android应用和语音导航的完整系统"
+  },
+  "detection": {
+    "enabled": true,
+    "model_path": "models/yolov8n.pt",
+    "confidence_threshold": 0.5,
+    "input_size": [640, 640],
+    "device": "cpu"
+  },
+  "android": {
+    "enabled": true,
+    "server_port": 8080,
+    "camera_resolution": [640, 480],
+    "fps": 30,
+    "auto_focus": true
+  },
+  "voice": {
+    "enabled": true,
+    "language": "zh-CN",
+    "voice_speed": 1.0,
+    "volume": 0.8,
+    "voice_engine": "pyttsx3",
+    "speech_recognition": "speech_recognition"
+  },
+  "communication": {
+    "port": 8080,
+    "timeout": 5,
+    "retry_count": 3,
+    "heartbeat_interval": 10
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/system.log",
+    "max_size": "10MB",
+    "backup_count": 5
+  }
+}

@@ -29,7 +29,7 @@ def test_required_packages():
     
     required_packages = [
         'numpy', 'opencv-python', 'torch', 'torchvision', 
-        'ultralytics', 'PyQt5', 'matplotlib', 'pillow'
+        'ultralytics', 'PyQt5', 'matplotlib', 'PIL'
     ]
     
     missing_packages = []
@@ -71,7 +71,10 @@ def test_project_structure():
         'modules',
         'data',
         'android_app',
-        'configs'
+        'configs',
+        'integration',
+        'voice_system',
+        'docs'
     ]
     
     missing_files = []
@@ -133,6 +136,36 @@ def test_git_environment():
         print("请安装Git: https://git-scm.com/")
         return False
 
+def test_integration_modules():
+    """测试整合模块"""
+    print("\n🔗 测试整合模块...")
+    
+    integration_files = [
+        'integration/main_controller.py',
+        'integration/module_communication.py',
+        'integration/system_config.json'
+    ]
+    
+    voice_files = [
+        'voice_system/voice_navigator.py',
+        'voice_system/voice_config.json'
+    ]
+    
+    missing_files = []
+    
+    for file in integration_files + voice_files:
+        if not os.path.exists(file):
+            missing_files.append(file)
+        else:
+            print(f"✅ {file}")
+    
+    if missing_files:
+        print(f"\n⚠️  缺少整合模块文件: {missing_files}")
+        return False
+    else:
+        print("✅ 整合模块完整")
+        return True
+
 def main():
     """主测试函数"""
     print("=" * 50)
@@ -144,7 +177,8 @@ def main():
         ("必需包", test_required_packages),
         ("项目结构", test_project_structure),
         ("Android环境", test_android_environment),
-        ("Git环境", test_git_environment)
+        ("Git环境", test_git_environment),
+        ("整合模块", test_integration_modules)
     ]
     
     passed = 0

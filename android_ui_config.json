@@ -1,0 +1,22 @@
+{
+  "ui": {
+    "default_theme": "accessible",
+    "default_font_size": 16.0,
+    "high_contrast": true,
+    "large_buttons": true,
+    "simplified_navigation": true
+  },
+  "accessibility": {
+    "screen_reader": true,
+    "voice_guidance": true,
+    "haptic_feedback": true,
+    "focus_indicators": true,
+    "keyboard_navigation": true
+  },
+  "navigation": {
+    "gesture_navigation": false,
+    "button_navigation": true,
+    "voice_navigation": true,
+    "swipe_gestures": false
+  }
+}

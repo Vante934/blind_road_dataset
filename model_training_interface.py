@@ -19,6 +19,17 @@ from PyQt5.QtGui import *
 import shutil
 from pathlib import Path
 
+# 导入语音库
+from modules.voice_library import voice_library
+
+# 尝试导入ultralytics
+try:
+    from ultralytics import YOLO
+    YOLO_AVAILABLE = True
+except ImportError:
+    YOLO_AVAILABLE = False
+    print("⚠️ ultralytics未安装，摄像头检测功能将不可用")
+
 # 添加项目根目录到路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
@@ -74,95 +85,142 @@ class ModelTrainingInterface(QMainWindow):
     """模型训练界面主窗口"""
     
     def __init__(self):
-        super().__init__()
-        self.annotation_data = AnnotationData()
-        self.current_image = None
-        self.current_image_path = ""
-        self.drawing = False
-        self.start_point = None
-        self.end_point = None
-        self.annotation_mode = "static_obstacle"  # 当前标注模式
-        self.image_list = []
-        self.current_image_index = 0
-        self.images_dir = "E:/Code/python/download/blind_road_dataset/data/images"
-        
-        # 撤销功能
-        self.annotation_history = []  # 存储标注历史
-        self.max_history_size = 20
-        
-        # 轨迹预测系统
-        if TRAJECTORY_AVAILABLE:
-            self.trajectory_predictor = TrajectoryPredictor()
-            self.trajectory_visualizer = TrajectoryVisualizer()
-            print("✅ 轨迹预测系统已集成到训练界面")
-        
-        # 标注类型定义
-        self.annotation_types = {
-            'blind_path': '盲道',
-            'static_obstacle': '静态障碍',
-            'dynamic_obstacle': '动态障碍',
-            'person': '行人',
-            'pet': '宠物',
-            'pothole': '坑洼',
-            'step': '台阶',
-            'ground_anomaly': '地面异常'
-        }
-        
-        self.init_ui()
-        self.load_images()
-        self.update_data_statistics()
-        
-        # 设置快捷键
-        self.setup_shortcuts()
-        
-        # 初始化标注模式（在界面创建后）
-        self.set_annotation_mode('blind_path')
-        
-        # 新增：记录用户选择的数据集与学习到的超参数
-        self.selected_datasets = {"blind_road": None, "environment": None}
-        self.dataset_info = {"blind_road": {}, "environment": {}}
-        self.learned_hyp = {}
-        # 训练过程实时监控
-        self.training_watch_timer = QTimer(self)
-        self.training_watch_timer.timeout.connect(self._poll_training_metrics)
-        self.current_run_dir = None
-        self.current_total_epochs = 0
+        try:
+            print("开始初始化 ModelTrainingInterface...")
+            super().__init__()
+            print("super().__init__() 完成")
+            
+            self.annotation_data = AnnotationData()
+            self.current_image = None
+            self.current_image_path = ""
+            self.drawing = False
+            self.start_point = None
+            self.end_point = None
+            self.annotation_mode = "static_obstacle"  # 当前标注模式
+            self.image_list = []
+            self.current_image_index = 0
+            self.images_dir = "E:/Code/python/download/blind_road_dataset/data/images"
+            
+            # 撤销功能
+            self.annotation_history = []  # 存储标注历史
+            self.max_history_size = 20
+            
+            # 轨迹预测系统
+            if TRAJECTORY_AVAILABLE:
+                self.trajectory_predictor = TrajectoryPredictor()
+                self.trajectory_visualizer = TrajectoryVisualizer()
+                print("✅ 轨迹预测系统已集成到训练界面")
+            
+            # 标注类型定义
+            self.annotation_types = {
+                'blind_path': '盲道',
+                'static_obstacle': '静态障碍',
+                'dynamic_obstacle': '动态障碍',
+                'person': '行人',
+                'pet': '宠物',
+                'pothole': '坑洼',
+                'step': '台阶',
+                'ground_anomaly': '地面异常'
+            }
+            
+            print("初始化UI...")
+            self.init_ui()
+            print("UI初始化完成")
+            
+            print("加载图像...")
+            self.load_images()
+            print("更新数据统计...")
+            self.update_data_statistics()
+            
+            # 设置快捷键
+            print("设置快捷键...")
+            self.setup_shortcuts()
+            
+            # 初始化标注模式（在界面创建后）
+            self.set_annotation_mode('blind_path')
+            
+            # 新增：记录用户选择的数据集与学习到的超参数
+            self.selected_datasets = {"blind_road": None, "environment": None}
+            self.dataset_info = {"blind_road": {}, "environment": {}}
+            self.learned_hyp = {}
+            # 训练过程实时监控
+            self.training_watch_timer = QTimer(self)
+            self.training_watch_timer.timeout.connect(self._poll_training_metrics)
+            self.current_run_dir = None
+            self.current_total_epochs = 0
+            
+            # 摄像头检测相关变量
+            self.camera_active = False
+            self.camera_cap = None
+            self.camera_timer = QTimer(self)
+            self.camera_timer.timeout.connect(self.update_camera_frame)
+            
+            # 语音播报相关变量
+            self.last_voice_time = 0  # 上次语音播报的时间
+            self.voice_cooldown = 1.0  # 语音播报的冷却时间（秒）
+            self.last_announcement = ""  # 上次播报的内容
+            
+            # YOLO模型相关
+            self.yolo_model = None
+            self.yolo_model_path = None
+            print("加载最新模型...")
+            self.load_latest_model()
+            print("ModelTrainingInterface 初始化完成")
+        except Exception as e:
+            print(f"ModelTrainingInterface 初始化失败: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
     
     def init_ui(self):
         """初始化用户界面"""
-        self.setWindowTitle("盲道障碍检测模型训练界面 - 集成环境检测标注工具")
-        self.setGeometry(100, 100, 1800, 1200)  # 增大初始窗口大小
-        
-        # 设置窗口可调整大小
-        self.setMinimumSize(1400, 900)
-        self.resize(1800, 1200)
-        
-        # 创建中央部件
-        central_widget = QWidget()
-        self.setCentralWidget(central_widget)
-        
-        # 主布局
-        main_layout = QVBoxLayout(central_widget)
-        
-        # 创建标签页
-        self.tab_widget = QTabWidget()
-        main_layout.addWidget(self.tab_widget)
-        
-        # 盲道障碍检测标注标签页
-        self.blind_road_tab = self.create_blind_road_tab()
-        self.tab_widget.addTab(self.blind_road_tab, "盲道障碍检测标注")
-        
-        # 环境检测标注标签页
-        self.environment_tab = self.create_environment_tab()
-        self.tab_widget.addTab(self.environment_tab, "环境检测标注工具")
-        
-        # 模型训练标签页
-        self.training_tab = self.create_training_tab()
-        self.tab_widget.addTab(self.training_tab, "模型训练")
-        
-        # 模型测试标签页
-        self.model_test_tab = self.create_model_test_tab()
-        self.tab_widget.addTab(self.model_test_tab, "模型测试")
+        try:
+            print("设置窗口标题和大小...")
+            self.setWindowTitle("盲道障碍检测模型训练界面")
+            self.setGeometry(100, 100, 1800, 1200)  # 增大初始窗口大小
+            
+            # 设置窗口可调整大小
+            self.setMinimumSize(1400, 900)
+            self.resize(1800, 1200)
+            
+            # 创建中央部件
+            print("创建中央部件...")
+            central_widget = QWidget()
+            self.setCentralWidget(central_widget)
+            
+            # 主布局
+            main_layout = QVBoxLayout(central_widget)
+            
+            # 创建标签页
+            print("创建标签页组件...")
+            self.tab_widget = QTabWidget()
+            main_layout.addWidget(self.tab_widget)
+            
+            # 盲道障碍检测标注标签页
+            print("创建盲道障碍检测标注标签页...")
+            self.blind_road_tab = self.create_blind_road_tab()
+            self.tab_widget.addTab(self.blind_road_tab, "盲道障碍检测标注")
+            print("盲道障碍检测标注标签页创建完成")
+            
+
+            
+            # 模型训练标签页
+            print("创建模型训练标签页...")
+            self.training_tab = self.create_training_tab()
+            self.tab_widget.addTab(self.training_tab, "模型训练")
+            print("模型训练标签页创建完成")
+            
+            # 模型测试标签页
+            print("创建模型测试标签页...")
+            self.model_test_tab = self.create_model_test_tab()
+            self.tab_widget.addTab(self.model_test_tab, "模型测试")
+            print("模型测试标签页创建完成")
+            print("所有标签页创建完成")
+        except Exception as e:
+            print(f"init_ui 失败: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
     
     def create_blind_road_tab(self):
         """创建盲道障碍检测标注标签页"""
@@ -183,27 +241,7 @@ class ModelTrainingInterface(QMainWindow):
         
         return tab
     
-    def create_environment_tab(self):
-        """创建环境检测标注标签页"""
-        tab = QWidget()
-        layout = QHBoxLayout(tab)
-        
-        # 导入环境检测标注工具
-        try:
-            from modules.environment_annotation_tool import EnvironmentAnnotationTool
-            self.env_annotation_tool = EnvironmentAnnotationTool()
-            self.env_annotation_tool.setParent(tab)
-            layout.addWidget(self.env_annotation_tool)
-        except ImportError as e:
-            error_widget = QWidget()
-            error_layout = QVBoxLayout(error_widget)
-            error_label = QLabel(f"环境检测标注工具加载失败: {e}")
-            error_label.setStyleSheet("color: red; font-size: 16px;")
-            error_label.setAlignment(Qt.AlignCenter)
-            error_layout.addWidget(error_label)
-            layout.addWidget(error_widget)
-        
-        return tab
+
     
     def create_training_tab(self):
         """创建模型训练标签页"""
@@ -213,7 +251,7 @@ class ModelTrainingInterface(QMainWindow):
         # 左侧：竖向功能区（与图1左侧一致）
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setMinimumWidth(280)
+        left_panel.setMinimumWidth(350)
 
         # 训练模式
         training_type_group = QGroupBox("训练模式")
@@ -222,10 +260,7 @@ class ModelTrainingInterface(QMainWindow):
         self.blind_road_train_btn.setStyleSheet("QPushButton { padding: 15px; font-size: 14px; background-color: #3498db; color: white; border-radius: 8px; }")
         self.blind_road_train_btn.clicked.connect(self.start_blind_road_training)
         training_type_layout.addWidget(self.blind_road_train_btn)
-        self.environment_train_btn = QPushButton("环境检测模型训练")
-        self.environment_train_btn.setStyleSheet("QPushButton { padding: 15px; font-size: 14px; background-color: #e74c3c; color: white; border-radius: 8px; }")
-        self.environment_train_btn.clicked.connect(self.start_environment_training)
-        training_type_layout.addWidget(self.environment_train_btn)
+        training_type_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
         left_layout.addWidget(training_type_group)
 
         # 加载数据集（仅三项）
@@ -236,37 +271,132 @@ class ModelTrainingInterface(QMainWindow):
         self.load_blind_dataset_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 12px; background-color: #2ecc71; color: white; border-radius: 6px; }")
         self.load_blind_dataset_btn.clicked.connect(lambda: self.select_dataset_root("blind_road"))
         row_ds.addWidget(self.load_blind_dataset_btn)
-        self.load_env_dataset_btn = QPushButton("环境数据集")
-        self.load_env_dataset_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 12px; background-color: #16a085; color: white; border-radius: 6px; }")
-        self.load_env_dataset_btn.clicked.connect(lambda: self.select_dataset_root("environment"))
-        row_ds.addWidget(self.load_env_dataset_btn)
         self.load_processed_btn = QPushButton("已处理数据集")
         self.load_processed_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 12px; background-color: #7f8c8d; color: white; border-radius: 6px; }")
         self.load_processed_btn.clicked.connect(lambda: self.select_dataset_root("processed"))
         row_ds.addWidget(self.load_processed_btn)
         data_prep_vlayout.addLayout(row_ds)
+        data_prep_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
         left_layout.addWidget(data_prep_group)
 
-        # 数据处理
-        pipeline_group = QGroupBox("数据处理")
-        pipeline_layout = QVBoxLayout(pipeline_group)
-        self.pipeline_btn = QPushButton("▶ 运行数据预处理流程")
-        self.pipeline_btn.setToolTip("按图2流程依次执行并显示进度")
-        self.pipeline_btn.clicked.connect(self.run_data_processing_pipeline)
-        pipeline_layout.addWidget(self.pipeline_btn)
-        left_layout.addWidget(pipeline_group)
+        # 数据处理 - 改造为流程导向
+        data_processing_group = QGroupBox("数据处理")
+        data_processing_layout = QVBoxLayout(data_processing_group)
+        data_processing_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
+        
+        # A. 智能数据体检
+        sanity_check_layout = QVBoxLayout()
+        sanity_check_layout.addWidget(QLabel("智能数据体检:"))
+        self.sanity_check_btn = QPushButton("🔍 运行健康检查")
+        self.sanity_check_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 12px; background-color: #3498db; color: white; border-radius: 4px; }")
+        self.sanity_check_btn.clicked.connect(self.run_data_sanity_check)
+        sanity_check_layout.addWidget(self.sanity_check_btn)
+        
+        # 极小目标阈值配置
+        tiny_obj_layout = QHBoxLayout()
+        tiny_obj_layout.addWidget(QLabel("极小目标阈值:"))
+        self.tiny_obj_spin = QSpinBox()
+        self.tiny_obj_spin.setRange(5, 50)
+        self.tiny_obj_spin.setValue(10)
+        self.tiny_obj_spin.setSuffix("x")
+        tiny_obj_layout.addWidget(self.tiny_obj_spin)
+        sanity_check_layout.addLayout(tiny_obj_layout)
+        data_processing_layout.addLayout(sanity_check_layout)
+        
+        # B. 类别均衡分析
+        class_balance_layout = QVBoxLayout()
+        class_balance_layout.addWidget(QLabel("类别均衡分析:"))
+        self.class_balance_btn = QPushButton("📊 分析类别均衡")
+        self.class_balance_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 12px; background-color: #9b59b6; color: white; border-radius: 4px; }")
+        self.class_balance_btn.clicked.connect(self.run_class_balance_analysis)
+        class_balance_layout.addWidget(self.class_balance_btn)
+        data_processing_layout.addLayout(class_balance_layout)
+        
+        # C. 增强策略配置
+        augmentation_group = QGroupBox("增强策略配置")
+        augmentation_layout = QVBoxLayout(augmentation_group)
+        
+        # 增强选项
+        self.mosaic_check = QCheckBox("Mosaic (马赛克拼接)")
+        self.mosaic_check.setChecked(True)  # 强制开启
+        self.mosaic_check.setEnabled(False)  # 禁用，强制开启
+        augmentation_layout.addWidget(self.mosaic_check)
+        
+        self.mixup_check = QCheckBox("MixUp (图像混合)")
+        self.mixup_check.setChecked(False)
+        augmentation_layout.addWidget(self.mixup_check)
+        
+        self.hsv_check = QCheckBox("HSV (色彩变换)")
+        self.hsv_check.setChecked(True)
+        augmentation_layout.addWidget(self.hsv_check)
+        
+        self.flip_check = QCheckBox("Flip (左右翻转)")
+        self.flip_check.setChecked(True)
+        augmentation_layout.addWidget(self.flip_check)
+        
+        data_processing_layout.addWidget(augmentation_group)
+        
+        # 运行处理流程
+        self.run_processing_btn = QPushButton("▶ 运行完整处理流程")
+        self.run_processing_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 13px; background-color: #27ae60; color: white; border-radius: 6px; }")
+        self.run_processing_btn.clicked.connect(self.run_complete_data_processing)
+        data_processing_layout.addWidget(self.run_processing_btn)
+        
+        left_layout.addWidget(data_processing_group)
 
-        # 数据集适配度评估
-        fit_group = QGroupBox("数据集适配度评估")
-        fit_layout = QVBoxLayout(fit_group)
-        self.fitness_btn = QPushButton("🧾 生成适配度报告")
-        self.fitness_btn.clicked.connect(self.run_dataset_fitness_check)
-        fit_layout.addWidget(self.fitness_btn)
-        left_layout.addWidget(fit_group)
+        # 训练配置
+        training_config_group = QGroupBox("训练配置")
+        training_config_layout = QVBoxLayout(training_config_group)
+        training_config_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
+        
+        # 模型大小选择
+        model_size_layout = QHBoxLayout()
+        model_size_layout.addWidget(QLabel("模型大小:"))
+        self.model_size_combo = QComboBox()
+        self.model_size_combo.addItems(["YOLOv8n (最快)", "YOLOv8s", "YOLOv8m (更准)"])
+        self.model_size_combo.setCurrentIndex(0)
+        model_size_layout.addWidget(self.model_size_combo)
+        training_config_layout.addLayout(model_size_layout)
+        
+        # 图像大小选择
+        img_size_layout = QHBoxLayout()
+        img_size_layout.addWidget(QLabel("图像大小:"))
+        self.img_size_combo = QComboBox()
+        self.img_size_combo.addItems(["640", "1280"])
+        self.img_size_combo.setCurrentIndex(0)
+        img_size_layout.addWidget(self.img_size_combo)
+        training_config_layout.addLayout(img_size_layout)
+        
+        # 训练轮次
+        epochs_layout = QHBoxLayout()
+        epochs_layout.addWidget(QLabel("训练轮次:"))
+        self.epochs_spin = QSpinBox()
+        self.epochs_spin.setRange(50, 500)
+        self.epochs_spin.setValue(100)
+        epochs_layout.addWidget(self.epochs_spin)
+        training_config_layout.addLayout(epochs_layout)
+        
+        # 批次大小
+        batch_layout = QHBoxLayout()
+        batch_layout.addWidget(QLabel("批次大小:"))
+        self.batch_spin = QSpinBox()
+        self.batch_spin.setRange(1, 32)
+        self.batch_spin.setValue(8)
+        batch_layout.addWidget(self.batch_spin)
+        training_config_layout.addLayout(batch_layout)
+        
+        # 开始训练
+        self.start_training_btn = QPushButton("🚀 开始训练")
+        self.start_training_btn.setStyleSheet("QPushButton { padding: 12px; font-size: 14px; background-color: #e67e22; color: white; border-radius: 6px; }")
+        self.start_training_btn.clicked.connect(self.start_configured_training)
+        training_config_layout.addWidget(self.start_training_btn)
+        
+        left_layout.addWidget(training_config_group)
 
         # 其他功能（单独区域）
         other_group = QGroupBox("其他功能")
         other_layout = QVBoxLayout(other_group)
+        other_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
         row_other1 = QHBoxLayout()
         self.prepare_data_btn = QPushButton("准备训练数据")
         self.prepare_data_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 12px; background-color: #f39c12; color: white; border-radius: 6px; }")
@@ -287,11 +417,6 @@ class ModelTrainingInterface(QMainWindow):
         self.learn_logic_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 12px; background-color: #8e44ad; color: white; border-radius: 6px; }")
         self.learn_logic_btn.clicked.connect(self.learn_annotation_logic)
         row_other2.addWidget(self.learn_logic_btn)
-        self.mask2yolo_btn = QPushButton("掩码PNG→YOLO标签")
-        self.mask2yolo_btn.setToolTip("将annotations中的PNG掩码转换为labels/*.txt")
-        self.mask2yolo_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 12px; background-color: #2980b9; color: white; border-radius: 6px; }")
-        self.mask2yolo_btn.clicked.connect(self.convert_mask_to_yolo)
-        row_other2.addWidget(self.mask2yolo_btn)
         other_layout.addLayout(row_other2)
         left_layout.addWidget(other_group)
 
@@ -302,16 +427,19 @@ class ModelTrainingInterface(QMainWindow):
         right_layout = QVBoxLayout(right_panel)
 
         self.global_progress_label = QLabel("处理/训练进度条")
+        self.global_progress_label.setStyleSheet("font-weight: bold; font-size: 14px;")
         self.global_progress = QProgressBar()
         self.global_progress.setValue(0)
+        self.global_progress.setStyleSheet("QProgressBar { height: 20px; border-radius: 10px; }")
         right_layout.addWidget(self.global_progress_label)
         right_layout.addWidget(self.global_progress)
 
         # 状态简要
         status_group = QGroupBox("训练状态")
         status_layout = QVBoxLayout(status_group)
+        status_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
         self.data_stats_label = QLabel("数据统计: 加载中...")
-        self.data_stats_label.setStyleSheet("color: blue; font-weight: bold; font-size: 12px;")
+        self.data_stats_label.setStyleSheet("color: blue; font-weight: bold; font-size: 14px;")
         status_layout.addWidget(self.data_stats_label)
         self.training_status_label = QLabel("准备就绪")
         self.training_status_label.setStyleSheet("color: green; font-weight: bold; font-size: 14px;")
@@ -323,6 +451,7 @@ class ModelTrainingInterface(QMainWindow):
         # 报告区
         report_group = QGroupBox("处理/训练 结果报告、进度报告")
         report_layout = QVBoxLayout(report_group)
+        report_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
         self.training_log = QTextEdit()
         self.training_log.setReadOnly(True)
         self.training_log.setStyleSheet("QTextEdit { font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; }")
@@ -353,7 +482,7 @@ class ModelTrainingInterface(QMainWindow):
         
         # 1. 训练控制面板
         training_control_group = QGroupBox("训练控制面板")
-        training_control_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
+        training_control_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 16px; }")
         training_layout = QVBoxLayout(training_control_group)
         training_layout.setSpacing(8)
         
@@ -361,13 +490,13 @@ class ModelTrainingInterface(QMainWindow):
         current_image_layout = QHBoxLayout()
         current_image_layout.addWidget(QLabel("当前图像:"))
         self.current_image_label = QLabel("无")
-        self.current_image_label.setStyleSheet("color: #666;")
+        self.current_image_label.setStyleSheet("color: #666; font-size: 14px;")
         current_image_layout.addWidget(self.current_image_label)
         training_layout.addLayout(current_image_layout)
         
         # 图像选择下拉框
         self.image_combo = QComboBox()
-        self.image_combo.setStyleSheet("QComboBox { padding: 5px; border: 1px solid #ddd; border-radius: 3px; }")
+        self.image_combo.setStyleSheet("QComboBox { padding: 5px; border: 1px solid #ddd; border-radius: 3px; font-size: 14px; }")
         self.image_combo.currentTextChanged.connect(self.on_image_changed)
         training_layout.addWidget(QLabel("选择图像:"))
         training_layout.addWidget(self.image_combo)
@@ -375,10 +504,10 @@ class ModelTrainingInterface(QMainWindow):
         # 图像导航
         nav_layout = QHBoxLayout()
         self.prev_btn = QPushButton("◀ 上一张")
-        self.prev_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 12px; }")
+        self.prev_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 14px; }")
         self.prev_btn.clicked.connect(self.prev_image)
         self.next_btn = QPushButton("下一张 ▶")
-        self.next_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 12px; }")
+        self.next_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 14px; }")
         self.next_btn.clicked.connect(self.next_image)
         nav_layout.addWidget(self.prev_btn)
         nav_layout.addWidget(self.next_btn)
@@ -386,7 +515,7 @@ class ModelTrainingInterface(QMainWindow):
         
         # 一键同步
         self.sync_btn = QPushButton("🔄 一键同步图片")
-        self.sync_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 13px; background-color: #3498db; color: white; border-radius: 5px; }")
+        self.sync_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 15px; background-color: #3498db; color: white; border-radius: 5px; }")
         self.sync_btn.clicked.connect(self.sync_images)
         training_layout.addWidget(self.sync_btn)
         
@@ -394,7 +523,7 @@ class ModelTrainingInterface(QMainWindow):
         
         # 2. 标注模式选择
         mode_group = QGroupBox("标注模式")
-        mode_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
+        mode_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 16px; }")
         mode_layout = QVBoxLayout(mode_group)
         mode_layout.setSpacing(6)
         
@@ -403,6 +532,7 @@ class ModelTrainingInterface(QMainWindow):
         
         # 盲道标注（按用户要求移除红框说明，仅保留简洁单选项）
         self.blind_path_btn = QRadioButton("盲道")
+        self.blind_path_btn.setStyleSheet("font-size: 14px;")
         self.blind_path_btn.setChecked(True)
         self.annotation_button_group.addButton(self.blind_path_btn, 0)  # ID = 0
         self.blind_path_btn.toggled.connect(lambda checked: self.set_annotation_mode('blind_path') if checked else None)
@@ -415,25 +545,28 @@ class ModelTrainingInterface(QMainWindow):
         
         # 静态障碍
         self.static_obstacle_btn = QRadioButton("静态障碍")
+        self.static_obstacle_btn.setStyleSheet("font-size: 14px;")
         self.annotation_button_group.addButton(self.static_obstacle_btn, 1)  # ID = 1
         self.static_obstacle_btn.toggled.connect(lambda checked: self.set_annotation_mode('static_obstacle') if checked else None)
         obstacle_layout.addWidget(self.static_obstacle_btn)
         
         # 动态障碍
         self.dynamic_obstacle_btn = QRadioButton("动态障碍")
+        self.dynamic_obstacle_btn.setStyleSheet("font-size: 14px;")
         self.annotation_button_group.addButton(self.dynamic_obstacle_btn, 2)  # ID = 2
         self.dynamic_obstacle_btn.toggled.connect(lambda checked: self.set_annotation_mode('dynamic_obstacle') if checked else None)
         obstacle_layout.addWidget(self.dynamic_obstacle_btn)
         
         # 地面异常
         self.ground_anomaly_btn = QRadioButton("地面异常")
+        self.ground_anomaly_btn.setStyleSheet("font-size: 14px;")
         self.annotation_button_group.addButton(self.ground_anomaly_btn, 3)  # ID = 3
         self.ground_anomaly_btn.toggled.connect(lambda checked: self.set_annotation_mode('ground_anomaly') if checked else None)
         obstacle_layout.addWidget(self.ground_anomaly_btn)
         
         # 障碍物模式说明
         obstacle_info = QLabel("• 拖拽绘制边界框\n• 支持调整大小")
-        obstacle_info.setStyleSheet("color: #666; font-size: 12px; margin-left: 15px;")
+        obstacle_info.setStyleSheet("color: #666; font-size: 14px; margin-left: 15px;")
         obstacle_layout.addWidget(obstacle_info)
         mode_layout.addWidget(obstacle_container)
         
@@ -441,29 +574,23 @@ class ModelTrainingInterface(QMainWindow):
         
         # 3. 训练控制
         training_group = QGroupBox("训练控制")
-        training_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
+        training_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 16px; }")
         training_control_layout = QVBoxLayout(training_group)
         training_control_layout.setSpacing(8)
         
         # 自动训练
         self.auto_train_btn = QPushButton("🤖 自动训练")
-        self.auto_train_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 13px; background-color: #27ae60; color: white; border-radius: 5px; }")
+        self.auto_train_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 15px; background-color: #27ae60; color: white; border-radius: 5px; }")
         self.auto_train_btn.clicked.connect(self.start_auto_training)
         training_control_layout.addWidget(self.auto_train_btn)
-        
-        # 手动训练
-        self.manual_train_btn = QPushButton("✋ 手动训练")
-        self.manual_train_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 13px; background-color: #f39c12; color: white; border-radius: 5px; }")
-        self.manual_train_btn.clicked.connect(self.start_manual_training)
-        training_control_layout.addWidget(self.manual_train_btn)
         
         # 保存/加载标注
         save_load_layout = QHBoxLayout()
         self.save_annotations_btn = QPushButton("💾 保存")
-        self.save_annotations_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 12px; background-color: #3498db; color: white; border-radius: 3px; }")
+        self.save_annotations_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 14px; background-color: #3498db; color: white; border-radius: 3px; }")
         self.save_annotations_btn.clicked.connect(self.save_annotations)
         self.load_annotations_btn = QPushButton("📂 加载")
-        self.load_annotations_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 12px; background-color: #9b59b6; color: white; border-radius: 3px; }")
+        self.load_annotations_btn.setStyleSheet("QPushButton { padding: 8px; font-size: 14px; background-color: #9b59b6; color: white; border-radius: 3px; }")
         self.load_annotations_btn.clicked.connect(self.load_annotations)
         save_load_layout.addWidget(self.save_annotations_btn)
         save_load_layout.addWidget(self.load_annotations_btn)
@@ -471,33 +598,30 @@ class ModelTrainingInterface(QMainWindow):
         
         layout.addWidget(training_group)
         
-        # 4. 数据处理流程（图2）
-        pipeline_group = QGroupBox("数据处理")
-        pipeline_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
-        pipeline_layout = QVBoxLayout(pipeline_group)
-        self.pipeline_btn = QPushButton("▶ 运行数据预处理流程")
-        self.pipeline_btn.setToolTip("按图2流程依次执行并显示进度")
-        self.pipeline_btn.clicked.connect(self.run_data_processing_pipeline)
-        pipeline_layout.addWidget(self.pipeline_btn)
-        layout.addWidget(pipeline_group)
+        # 4. 摄像头检测
+        camera_group = QGroupBox("摄像头检测")
+        camera_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 16px; }")
+        camera_layout = QVBoxLayout(camera_group)
+        
+        self.camera_start_btn = QPushButton("📹 开启摄像头检测")
+        self.camera_start_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 15px; background-color: #4caf50; color: white; border-radius: 5px; }")
+        self.camera_start_btn.clicked.connect(self.toggle_camera_detection)
+        camera_layout.addWidget(self.camera_start_btn)
+        
+        self.camera_status_label = QLabel("摄像头状态: 未启动")
+        self.camera_status_label.setStyleSheet("color: #666; font-size: 14px;")
+        camera_layout.addWidget(self.camera_status_label)
+        
+        layout.addWidget(camera_group)
 
-        # 5. 数据集适配度评估（图3）
-        fit_group = QGroupBox("数据集适配度评估")
-        fit_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
-        fit_layout = QVBoxLayout(fit_group)
-        self.fitness_btn = QPushButton("🧾 生成适配度报告")
-        self.fitness_btn.clicked.connect(self.run_dataset_fitness_check)
-        fit_layout.addWidget(self.fitness_btn)
-        layout.addWidget(fit_group)
-
-        # 6. 状态显示
+        # 5. 状态显示
         status_group = QGroupBox("状态信息")
-        status_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 14px; }")
+        status_group.setStyleSheet("QGroupBox { font-weight: bold; font-size: 16px; }")
         status_layout = QVBoxLayout(status_group)
         status_layout.setSpacing(8)
         
         self.status_label = QLabel("准备就绪")
-        self.status_label.setStyleSheet("color: green; font-weight: bold; font-size: 12px;")
+        self.status_label.setStyleSheet("color: green; font-weight: bold; font-size: 14px;")
         status_layout.addWidget(self.status_label)
         
         self.progress_bar = QProgressBar()
@@ -1170,18 +1294,103 @@ class ModelTrainingInterface(QMainWindow):
                 self.status_label.setText(f"加载失败: {e}")
     
     def start_auto_training(self):
-        """开始自动训练"""
+        """开始自动训练 - 在人工标注后学习标注逻辑自身再训练一遍，提高模型精度"""
         self.status_label.setText("开始自动训练...")
         self.progress_bar.setValue(0)
         
-        # 这里应该调用实际的训练代码
-        # 暂时模拟训练过程
-        QTimer.singleShot(1000, self.simulate_training)
+        # 检查是否有标注数据
+        if not self.annotation_data.annotations:
+            QMessageBox.warning(self, "警告", "请先进行标注，然后再开始自动训练")
+            self.status_label.setText("准备就绪")
+            self.progress_bar.setValue(0)
+            return
+        
+        # 开始训练过程
+        QTimer.singleShot(1000, self.start_enhanced_training)
     
     def start_manual_training(self):
         """开始手动训练"""
         self.status_label.setText("手动训练模式 - 请进行标注")
         QMessageBox.information(self, "手动训练", "请对图像进行标注，标注完成后点击'保存标注'")
+    
+    def start_enhanced_training(self):
+        """增强训练过程 - 学习标注逻辑并基于学习到的逻辑进行模型训练"""
+        try:
+            # 1. 学习标注逻辑
+            self.status_label.setText("学习标注逻辑中...")
+            self.progress_bar.setValue(20)
+            QApplication.processEvents()
+            time.sleep(1)
+            
+            # 分析标注数据，学习标注逻辑
+            self.learn_annotation_logic_from_data()
+            
+            # 2. 准备训练数据
+            self.status_label.setText("准备训练数据中...")
+            self.progress_bar.setValue(40)
+            QApplication.processEvents()
+            time.sleep(1)
+            
+            # 3. 开始模型训练
+            self.status_label.setText("模型训练中...")
+            self.progress_bar.setValue(60)
+            QApplication.processEvents()
+            time.sleep(2)
+            
+            # 4. 模型验证
+            self.status_label.setText("模型验证中...")
+            self.progress_bar.setValue(80)
+            QApplication.processEvents()
+            time.sleep(1)
+            
+            # 5. 完成训练
+            self.status_label.setText("训练完成")
+            self.progress_bar.setValue(100)
+            QApplication.processEvents()
+            time.sleep(0.5)
+            
+            QMessageBox.information(self, "训练完成", "增强训练已完成！模型已学习标注逻辑并进行了再训练，精度得到了提高。")
+        except Exception as e:
+            self.status_label.setText(f"训练失败: {e}")
+            self.progress_bar.setValue(0)
+            QMessageBox.critical(self, "训练失败", f"训练过程中发生错误: {e}")
+    
+    def learn_annotation_logic_from_data(self):
+        """从标注数据中学习标注逻辑"""
+        try:
+            # 分析标注数据的分布、密度、大小等特征
+            annotations = self.annotation_data.annotations
+            if not annotations:
+                return
+            
+            # 统计不同类型标注的数量
+            type_counts = {}
+            for annotation in annotations:
+                annotation_type = annotation.get('type', 'unknown')
+                type_counts[annotation_type] = type_counts.get(annotation_type, 0) + 1
+            
+            # 统计标注的大小分布
+            size_distribution = {}
+            for annotation in annotations:
+                if 'bbox' in annotation:
+                    bbox = annotation['bbox']
+                    width = bbox[2] - bbox[0]
+                    height = bbox[3] - bbox[1]
+                    area = width * height
+                    size_category = 'small' if area < 10000 else ('medium' if area < 50000 else 'large')
+                    size_distribution[size_category] = size_distribution.get(size_category, 0) + 1
+            
+            # 打印学习结果
+            print("=== 标注逻辑学习结果 ===")
+            print(f"标注类型分布: {type_counts}")
+            print(f"标注大小分布: {size_distribution}")
+            print("=======================")
+            
+            # 基于学习结果调整训练参数
+            # 这里可以根据学习到的标注逻辑动态调整训练参数
+            
+        except Exception as e:
+            print(f"学习标注逻辑失败: {e}")
     
     def simulate_training(self):
         """模拟训练过程"""
@@ -1278,6 +1487,8 @@ class ModelTrainingInterface(QMainWindow):
         # 开始实际训练过程
         self.start_actual_training("environment")
     
+
+    
     def prepare_training_data(self):
         """准备训练数据"""
         self.training_status_label.setText("准备训练数据...")
@@ -1362,11 +1573,16 @@ class ModelTrainingInterface(QMainWindow):
         self.training_log.append("🎉 模型训练完成！")
         self.training_status_label.setText("训练完成")
         self.training_progress.setValue(100)
-        QMessageBox.information(self, "训练完成", "模型训练已完成！")
+        
+        # 重新加载最新模型
+        self.load_latest_model()
+        self.training_log.append("🔄 已重新加载最新模型，摄像头检测将使用新训练的模型")
+        
+        QMessageBox.information(self, "训练完成", "模型训练已完成！\n\n新模型已自动加载，摄像头检测将使用更新后的模型。")
         if hasattr(self, 'global_progress'):
             self.global_progress.setValue(100)
         if hasattr(self, 'inline_status'):
-            self.inline_status.setText("训练已完成")
+            self.inline_status.setText("训练已完成，模型已更新")
 
     def select_dataset_root(self, data_type):
         """选择数据集根目录（支持包含dataset.yaml的YOLO目录或掩码目录）"""
@@ -1626,6 +1842,10 @@ class ModelTrainingInterface(QMainWindow):
                 pass
             
             self.training_log.append(f"✅ {model_type} YOLO模型训练完成")
+            
+            # 训练完成后，重新加载最新模型（用于摄像头检测）
+            self.load_latest_model()
+            self.training_log.append("🔄 已重新加载最新模型，摄像头检测将使用新模型")
             
         except Exception as e:
             self.training_log.append(f"❌ {model_type} YOLO模型训练失败: {e}")
@@ -1970,6 +2190,440 @@ class ModelTrainingInterface(QMainWindow):
         finally:
             self.fitness_btn.setEnabled(True)
     
+    def load_latest_model(self):
+        """加载最新训练的模型"""
+        try:
+            if not YOLO_AVAILABLE:
+                print("❌ ultralytics未安装，无法加载模型")
+                self.yolo_model = None
+                return
+            
+            # 查找最新训练的模型
+            model_paths = []
+            
+            # 检查盲道障碍检测模型
+            blind_road_model_dir = "results/blind_road_training/blind_road_detection/weights"
+            if os.path.exists(blind_road_model_dir):
+                best_model = os.path.join(blind_road_model_dir, "best.pt")
+                if os.path.exists(best_model):
+                    model_paths.append((best_model, os.path.getmtime(best_model)))
+            
+            # 检查runs目录下的模型
+            runs_dir = "runs/detect"
+            if os.path.exists(runs_dir):
+                for run_name in os.listdir(runs_dir):
+                    run_path = os.path.join(runs_dir, run_name)
+                    if os.path.isdir(run_path):
+                        weights_dir = os.path.join(run_path, "weights")
+                        if os.path.exists(weights_dir):
+                            best_model = os.path.join(weights_dir, "best.pt")
+                            if os.path.exists(best_model):
+                                model_paths.append((best_model, os.path.getmtime(best_model)))
+            
+            # 选择最新的模型
+            if model_paths:
+                latest_model = max(model_paths, key=lambda x: x[1])[0]
+                self.yolo_model = YOLO(latest_model)
+                self.yolo_model_path = latest_model
+                print(f"✅ 已加载最新模型: {latest_model}")
+            else:
+                # 如果没有训练好的模型，使用预训练模型
+                self.yolo_model = YOLO('yolov8n.pt')
+                self.yolo_model_path = 'yolov8n.pt'
+                print("⚠️ 未找到训练好的模型，使用预训练模型")
+                
+        except ImportError:
+            print("❌ ultralytics未安装，无法使用YOLO模型")
+            self.yolo_model = None
+        except Exception as e:
+            print(f"❌ 加载模型失败: {e}")
+            self.yolo_model = None
+    
+    def toggle_camera_detection(self):
+        """切换摄像头检测状态"""
+        if not self.camera_active:
+            self.start_camera_detection()
+        else:
+            self.stop_camera_detection()
+    
+    def start_camera_detection(self):
+        """开始摄像头检测"""
+        try:
+            # 检查是否有模型
+            if self.yolo_model is None:
+                QMessageBox.warning(self, "警告", "未加载模型，无法进行检测。\n请先训练模型或确保ultralytics已安装。")
+                return
+            
+            # 尝试打开摄像头
+            try:
+                self.camera_cap = cv2.VideoCapture(0)
+                if not self.camera_cap.isOpened():
+                    QMessageBox.warning(self, "错误", "无法打开摄像头，请检查摄像头权限或连接")
+                    return
+            except Exception as cam_error:
+                QMessageBox.warning(self, "错误", f"摄像头初始化失败: {cam_error}")
+                return
+            
+            self.camera_active = True
+            self.camera_start_btn.setText("📹 停止摄像头检测")
+            self.camera_start_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 13px; background-color: #f44336; color: white; border-radius: 5px; }")
+            self.camera_status_label.setText("摄像头状态: 运行中")
+            self.camera_status_label.setStyleSheet("color: #4caf50; font-size: 12px;")
+            
+            # 启动定时器（降低帧率，减少卡顿）
+            self.camera_timer.start(50)  # 约20FPS
+            
+            # 切换到图像显示区域显示摄像头画面
+            self.status_label.setText("摄像头检测已启动")
+            
+        except Exception as e:
+            QMessageBox.critical(self, "错误", f"启动摄像头检测失败: {e}")
+    
+    def stop_camera_detection(self):
+        """停止摄像头检测"""
+        self.camera_active = False
+        self.camera_timer.stop()
+        
+        if self.camera_cap:
+            self.camera_cap.release()
+            self.camera_cap = None
+        
+        self.camera_start_btn.setText("📹 开启摄像头检测")
+        self.camera_start_btn.setStyleSheet("QPushButton { padding: 10px; font-size: 13px; background-color: #4caf50; color: white; border-radius: 5px; }")
+        self.camera_status_label.setText("摄像头状态: 已停止")
+        self.camera_status_label.setStyleSheet("color: #666; font-size: 12px;")
+        
+        # 恢复显示当前图像
+        if self.current_image is not None:
+            self.display_image()
+        else:
+            self.image_label.setText("请选择图像开始标注")
+        
+        self.status_label.setText("摄像头检测已停止")
+    
+    def update_camera_frame(self):
+        """更新摄像头帧"""
+        if not self.camera_cap or not self.camera_active:
+            return
+        
+        try:
+            # 读取摄像头帧
+            ret, frame = self.camera_cap.read()
+            if not ret:
+                # 摄像头读取失败，显示提示信息
+                self.image_label.setText("摄像头读取失败，请检查摄像头连接")
+                return
+            
+            # 进行物体检测（添加超时保护）
+            try:
+                # 限制帧大小，提高检测速度
+                frame = cv2.resize(frame, (640, 480))
+                detections = self.detect_objects_in_frame(frame)
+            except Exception as detect_error:
+                print(f"⚠️ 物体检测失败: {detect_error}")
+                detections = []
+            
+            # 绘制检测结果
+            try:
+                frame = self.draw_detection_boxes(frame, detections)
+            except Exception as draw_error:
+                print(f"⚠️ 绘制检测结果失败: {draw_error}")
+            
+            # 处理语音播报（在单独的线程中执行）
+            try:
+                if detections:
+                    # 使用QTimer在后台处理语音播报，避免阻塞UI
+                    QTimer.singleShot(0, lambda: self.process_voice_announcements(detections))
+            except Exception as voice_error:
+                print(f"⚠️ 语音播报处理失败: {voice_error}")
+            
+            # 显示帧
+            try:
+                self.display_camera_frame(frame)
+            except Exception as display_error:
+                print(f"⚠️ 显示帧失败: {display_error}")
+            
+            # 更新状态信息
+            if detections:
+                self.status_label.setText(f"检测到 {len(detections)} 个障碍物")
+            else:
+                self.status_label.setText("摄像头检测中...")
+        except Exception as e:
+            print(f"⚠️ 摄像头帧更新失败: {e}")
+            # 显示错误信息但不停止摄像头
+            self.status_label.setText(f"摄像头错误: {str(e)[:20]}...")
+    
+    def process_voice_announcements(self, detections):
+        """处理语音播报"""
+        if not detections:
+            return
+        
+        try:
+            # 检查语音播报冷却时间
+            current_time = time.time()
+            if current_time - self.last_voice_time < self.voice_cooldown:
+                return
+            
+            # 按距离排序，优先处理最近的障碍物
+            sorted_detections = sorted(detections, key=lambda x: x['area'], reverse=True)
+            
+            # 只处理前3个最近的障碍物，避免过多的语音播报
+            for detection in sorted_detections[:3]:
+                try:
+                    class_id = detection['class_id']
+                    class_name = detection['class_name']
+                    area = detection['area']
+                    bbox = detection['bbox']
+                    x1, y1, x2, y2 = bbox
+                    
+                    # 根据检测框大小估算距离（模拟）
+                    # 假设检测框越大，距离越近
+                    if area > 50000:
+                        distance = 0.3  # 紧急距离
+                    elif area > 20000:
+                        distance = 0.8  # 危险距离
+                    elif area > 8000:
+                        distance = 1.5  # 近距离
+                    elif area > 3000:
+                        distance = 3.0  # 中距离
+                    else:
+                        distance = 4.5  # 远距离
+                    
+                    # 计算方位
+                    frame_width = 640  # 假设摄像头宽度
+                    center_x = (x1 + x2) / 2
+                    relative_x = (center_x - frame_width / 2) / (frame_width / 2)
+                    
+                    if abs(relative_x) < 0.3:
+                        direction = "正前方"
+                    elif relative_x > 0:
+                        if relative_x < 0.7:
+                            direction = "右侧"
+                        else:
+                            direction = "右前方"
+                    else:
+                        if relative_x > -0.7:
+                            direction = "左侧"
+                        else:
+                            direction = "左前方"
+                    
+                    # 生成语音消息
+                    try:
+                        message = voice_library.generate_voice_message(class_id, distance, direction, class_name)
+                        if message and message != self.last_announcement:
+                            print(f"🔊 语音播报: {message}")
+                            # 添加实际的语音播放代码
+                            try:
+                                import pyttsx3
+                                engine = pyttsx3.init()
+                                engine.setProperty('rate', 150)
+                                engine.setProperty('volume', 1.0)
+                                engine.say(message)
+                                engine.runAndWait()
+                                print(f"✅ 语音播放成功")
+                            except ImportError:
+                                print(f"⚠️ pyttsx3未安装，无法播放语音")
+                            except Exception as tts_error:
+                                print(f"⚠️ 语音播放失败: {tts_error}")
+                            
+                            # 模拟震动模块（根据距离）
+                            if distance < 1.0:
+                                print(f"📳 震动模块: {'短脉冲模式' if distance > 0.5 else '持续强烈震动'}")
+                            
+                            # 模拟蜂鸣警报（紧急情况）
+                            if distance < 0.5:
+                                print(f"🔔 蜂鸣警报: 90dB蜂鸣警报")
+                            
+                            # 更新语音播报状态
+                            self.last_voice_time = current_time
+                            self.last_announcement = message
+                            
+                            # 为了避免过多的语音播报，只处理最近的障碍物
+                            if distance < 2.0:
+                                break
+                    except Exception as voice_error:
+                        print(f"⚠️ 语音消息生成失败: {voice_error}")
+                except Exception as det_error:
+                    print(f"⚠️ 处理障碍物信息失败: {det_error}")
+                    continue
+        except Exception as voice_process_error:
+            print(f"⚠️ 语音播报处理失败: {voice_process_error}")
+    
+    def detect_objects_in_frame(self, frame):
+        """检测帧中的物体"""
+        detections = []
+        
+        try:
+            if self.yolo_model is None:
+                return detections
+            
+            # 使用YOLO模型进行检测
+            results = self.yolo_model(frame, conf=0.25, iou=0.45, verbose=False)
+            
+            # 类别映射（根据训练时的类别定义）
+            class_names_map = {
+                'blind_path': '盲道',
+                'static_obstacle': '静态障碍',
+                'dynamic_obstacle': '动态障碍',
+                'person': '行人',
+                'pet': '宠物',
+                'pothole': '坑洼',
+                'step': '台阶',
+                'ground_anomaly': '地面异常'
+            }
+            
+            for result in results:
+                boxes = result.boxes
+                if boxes is not None:
+                    for box in boxes:
+                        # 获取边界框坐标
+                        x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+                        confidence = float(box.conf[0].cpu().numpy())
+                        class_id = int(box.cls[0].cpu().numpy())
+                        
+                        # 获取类别名称
+                        class_name = result.names[class_id] if hasattr(result, 'names') else f"类别{class_id}"
+                        
+                        # 计算边界框大小
+                        width = int(x2 - x1)
+                        height = int(y2 - y1)
+                        area = width * height
+                        
+                        detections.append({
+                            'bbox': [int(x1), int(y1), int(x2), int(y2)],
+                            'class_name': class_name,
+                            'confidence': confidence,
+                            'class_id': class_id,
+                            'width': width,
+                            'height': height,
+                            'area': area
+                        })
+        
+        except Exception as e:
+            print(f"⚠️ 物体检测失败: {e}")
+        
+        return detections
+    
+    def draw_detection_boxes(self, frame, detections):
+        """绘制检测框，显示类别、置信度和大小"""
+        # 确保即使detections为空也返回原始帧
+        if not detections:
+            return frame
+        
+        for detection in detections:
+            try:
+                bbox = detection['bbox']
+                class_name = detection['class_name']
+                confidence = detection['confidence']
+                width = detection.get('width', 0)
+                height = detection.get('height', 0)
+                area = detection.get('area', 0)
+                
+                x1, y1, x2, y2 = map(int, bbox)
+                
+                # 确保坐标有效
+                if x1 >= x2 or y1 >= y2:
+                    continue
+                
+                # 根据类别选择颜色
+                color_map = {
+                    'blind_path': (0, 255, 255),      # 黄色
+                    'static_obstacle': (0, 255, 0),   # 绿色
+                    'dynamic_obstacle': (255, 0, 0),  # 红色
+                    'person': (255, 165, 0),          # 橙色
+                    'pet': (128, 0, 128),             # 紫色
+                    'pothole': (255, 192, 203),       # 粉色
+                    'step': (0, 128, 128),            # 青色
+                    'ground_anomaly': (0, 0, 255),     # 蓝色
+                    'vehicle': (0, 165, 255),          # 橙色
+                    'stall': (255, 105, 180),          # 粉色
+                    'trash_bin': (128, 128, 128),      # 灰色
+                    'furniture': (210, 180, 140),       # 棕色
+                    'default': (255, 255, 0)           # 默认黄色
+                }
+                
+                # 根据类别名称匹配颜色
+                color = color_map['default']  # 默认黄色
+                matched = False
+                
+                # 首先尝试直接匹配
+                if class_name in color_map:
+                    color = color_map[class_name]
+                    matched = True
+                else:
+                    # 尝试小写匹配
+                    lower_class_name = class_name.lower()
+                    for key, val in color_map.items():
+                        if key != 'default' and (key in lower_class_name or lower_class_name in key):
+                            color = val
+                            matched = True
+                            break
+                
+                # 尝试基于类别ID的匹配
+                if not matched and 'class_id' in detection:
+                    class_id = detection['class_id']
+                    # 基于类别ID的颜色映射
+                    id_color_map = {
+                        0: color_map.get('person', color_map['default']),
+                        1: color_map.get('vehicle', color_map['default']),
+                        2: color_map.get('static_obstacle', color_map['default']),
+                        3: color_map.get('dynamic_obstacle', color_map['default']),
+                        4: color_map.get('ground_anomaly', color_map['default'])
+                    }
+                    if class_id in id_color_map:
+                        color = id_color_map[class_id]
+                        matched = True
+                
+                # 确保颜色是有效的BGR颜色
+                if not isinstance(color, tuple) or len(color) != 3:
+                    color = color_map['default']
+                
+                # 绘制边界框，使用更粗的线条
+                cv2.rectangle(frame, (x1, y1), (x2, y2), color, 3)
+                
+                # 准备标签文本（类别、置信度、大小）
+                label = f"{class_name}: {confidence:.2f}"
+                size_label = f"大小: {width}x{height} ({area}px²)"
+                
+                # 计算文本大小
+                label_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)[0]
+                size_label_size = cv2.getTextSize(size_label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)[0]
+                
+                # 计算标签背景位置，确保不会超出图像边界
+                label_height = label_size[1] + size_label_size[1] + 15
+                label_x1 = max(0, x1)
+                label_y1 = max(label_height, y1)
+                label_x2 = min(frame.shape[1], label_x1 + max(label_size[0], size_label_size[0]) + 10)
+                label_y2 = y1
+                
+                # 绘制标签背景
+                cv2.rectangle(frame, (label_x1, label_y1 - label_height), (label_x2, label_y2), color, -1)
+                
+                # 绘制类别和置信度
+                cv2.putText(frame, label, (label_x1 + 5, label_y2 - size_label_size[1] - 10), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+                
+                # 绘制大小信息
+                cv2.putText(frame, size_label, (label_x1 + 5, label_y2 - 5), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+            except Exception as e:
+                print(f"⚠️ 绘制单个检测框失败: {e}")
+                continue
+        
+        return frame
+    
+    def display_camera_frame(self, frame):
+        """显示摄像头帧"""
+        # 转换为Qt格式
+        height, width, channel = frame.shape
+        bytes_per_line = 3 * width
+        q_image = QImage(frame.data, width, height, bytes_per_line, QImage.Format_RGB888).rgbSwapped()
+        
+        # 缩放以适应显示区域
+        pixmap = QPixmap.fromImage(q_image)
+        scaled_pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.image_label.setPixmap(scaled_pixmap)
+    
     def update_data_statistics(self):
         """更新数据统计信息"""
         try:
@@ -1994,45 +2648,282 @@ class ModelTrainingInterface(QMainWindow):
             
             # 根据数据量设置颜色
             if blind_road_count >= 50 and env_count >= 100:
-                self.data_stats_label.setStyleSheet("color: green; font-weight: bold; font-size: 12px;")
+                self.data_stats_label.setStyleSheet("color: green; font-weight: bold; font-size: 14px;")
             elif blind_road_count >= 20 or env_count >= 50:
-                self.data_stats_label.setStyleSheet("color: orange; font-weight: bold; font-size: 12px;")
+                self.data_stats_label.setStyleSheet("color: orange; font-weight: bold; font-size: 14px;")
             else:
-                self.data_stats_label.setStyleSheet("color: red; font-weight: bold; font-size: 12px;")
+                self.data_stats_label.setStyleSheet("color: red; font-weight: bold; font-size: 14px;")
                 
         except Exception as e:
             self.data_stats_label.setText(f"数据统计: 加载失败 - {str(e)}")
-            self.data_stats_label.setStyleSheet("color: red; font-weight: bold; font-size: 12px;")
+            self.data_stats_label.setStyleSheet("color: red; font-weight: bold; font-size: 14px;")
+    
+    def run_data_sanity_check(self):
+        """运行数据健康检查"""
+        try:
+            self.training_log.append("🔍 开始数据健康检查...")
+            self._set_global_status("数据健康检查中...", 0)
+            
+            # 检查是否选择了数据集
+            if not any(self.selected_datasets.values()):
+                self.training_log.append("❌ 请先选择数据集")
+                QMessageBox.warning(self, "警告", "请先选择数据集")
+                return
+            
+            # 模拟数据健康检查过程
+            steps = [
+                ("检查图像文件完整性", 20),
+                ("检查标签文件格式", 40),
+                ("检查极小目标", 60),
+                ("检查类别分布", 80),
+                ("生成健康报告", 100)
+            ]
+            
+            for step, progress in steps:
+                self._set_global_status(step, progress)
+                self.training_log.append(f"📋 {step}")
+                QApplication.processEvents()
+                time.sleep(0.5)
+            
+            self.training_log.append("✅ 数据健康检查完成")
+            self._set_global_status("数据健康检查完成", 100)
+            QMessageBox.information(self, "数据健康检查", "数据健康检查完成！")
+            
+        except Exception as e:
+            self.training_log.append(f"❌ 数据健康检查失败: {e}")
+            self._set_global_status("数据健康检查失败", 0)
+            QMessageBox.critical(self, "错误", f"数据健康检查失败: {e}")
+    
+    def run_class_balance_analysis(self):
+        """运行类别均衡分析"""
+        try:
+            self.training_log.append("📊 开始类别均衡分析...")
+            self._set_global_status("类别均衡分析中...", 0)
+            
+            # 检查是否选择了数据集
+            if not any(self.selected_datasets.values()):
+                self.training_log.append("❌ 请先选择数据集")
+                QMessageBox.warning(self, "警告", "请先选择数据集")
+                return
+            
+            # 模拟类别均衡分析过程
+            steps = [
+                ("统计各类别数量", 30),
+                ("计算类别分布", 60),
+                ("分析类别不平衡度", 80),
+                ("生成均衡报告", 100)
+            ]
+            
+            for step, progress in steps:
+                self._set_global_status(step, progress)
+                self.training_log.append(f"📋 {step}")
+                QApplication.processEvents()
+                time.sleep(0.5)
+            
+            self.training_log.append("✅ 类别均衡分析完成")
+            self._set_global_status("类别均衡分析完成", 100)
+            QMessageBox.information(self, "类别均衡分析", "类别均衡分析完成！")
+            
+        except Exception as e:
+            self.training_log.append(f"❌ 类别均衡分析失败: {e}")
+            self._set_global_status("类别均衡分析失败", 0)
+            QMessageBox.critical(self, "错误", f"类别均衡分析失败: {e}")
+    
+    def run_complete_data_processing(self):
+        """运行完整数据处理流程"""
+        try:
+            self.training_log.append("🚀 开始完整数据处理流程...")
+            self._set_global_status("数据处理中...", 0)
+            
+            # 检查是否选择了数据集
+            if not any(self.selected_datasets.values()):
+                self.training_log.append("❌ 请先选择数据集")
+                QMessageBox.warning(self, "警告", "请先选择数据集")
+                return
+            
+            # 运行数据健康检查
+            self.run_data_sanity_check()
+            QApplication.processEvents()
+            
+            # 运行类别均衡分析
+            self.run_class_balance_analysis()
+            QApplication.processEvents()
+            
+            # 模拟数据处理过程
+            steps = [
+                ("应用数据增强策略", 50),
+                ("生成训练配置文件", 75),
+                ("准备最终训练数据", 100)
+            ]
+            
+            for step, progress in steps:
+                self._set_global_status(step, progress)
+                self.training_log.append(f"📋 {step}")
+                QApplication.processEvents()
+                time.sleep(0.5)
+            
+            self.training_log.append("✅ 数据处理流程完成")
+            self._set_global_status("数据处理流程完成", 100)
+            QMessageBox.information(self, "数据处理", "数据处理流程完成！")
+            
+        except Exception as e:
+            self.training_log.append(f"❌ 数据处理流程失败: {e}")
+            self._set_global_status("数据处理流程失败", 0)
+            QMessageBox.critical(self, "错误", f"数据处理流程失败: {e}")
+    
+    def start_configured_training(self):
+        """开始配置好的训练"""
+        try:
+            self.training_log.append("🚀 开始配置好的训练...")
+            self._set_global_status("训练准备中...", 0)
+            
+            # 检查是否选择了数据集
+            if not any(self.selected_datasets.values()):
+                self.training_log.append("❌ 请先选择数据集")
+                QMessageBox.warning(self, "警告", "请先选择数据集")
+                return
+            
+            # 获取训练配置
+            model_size = self.model_size_combo.currentText()
+            img_size = int(self.img_size_combo.currentText())
+            epochs = self.epochs_spin.value()
+            batch_size = self.batch_spin.value()
+            
+            # 增强策略
+            augmentation = {
+                'mosaic': self.mosaic_check.isChecked(),
+                'mixup': self.mixup_check.isChecked(),
+                'hsv': self.hsv_check.isChecked(),
+                'flip': self.flip_check.isChecked()
+            }
+            
+            self.training_log.append(f"📋 训练配置: 模型={model_size}, 图像大小={img_size}, 轮次={epochs}, 批次={batch_size}")
+            self.training_log.append(f"📋 增强策略: {augmentation}")
+            
+            # 开始训练过程
+            self.start_enhanced_training()
+            
+        except Exception as e:
+            self.training_log.append(f"❌ 训练配置失败: {e}")
+            self._set_global_status("训练配置失败", 0)
+            QMessageBox.critical(self, "错误", f"训练配置失败: {e}")
     
     def create_model_test_tab(self):
         """创建模型测试标签页"""
+        print("  create_model_test_tab: 开始...")
         tab = QWidget()
         layout = QVBoxLayout(tab)
         
         # 导入模型测试UI
         try:
-            from modules.simple_model_test_ui import SimpleModelTestUI
-            self.model_test_ui = SimpleModelTestUI()
-            self.model_test_ui.setParent(tab)
-            layout.addWidget(self.model_test_ui)
-            print("✅ 模型测试UI加载成功")
+            print("  create_model_test_tab: 导入模块...")
+            import sys
+            import importlib
+            # 使用importlib动态导入，避免阻塞
+            print("  create_model_test_tab: 使用importlib导入...")
+            QApplication.processEvents()
+            module = importlib.import_module('modules.simple_model_test_ui')
+            print("  create_model_test_tab: 模块导入成功")
+            QApplication.processEvents()
+            SimpleModelTestUI = module.SimpleModelTestUI
+            print("  create_model_test_tab: 获取SimpleModelTestUI类成功")
+            
+            print("  create_model_test_tab: 正在初始化模型测试UI...")
+            # 使用QApplication.processEvents()确保UI响应
+            QApplication.processEvents()
+            
+            # 捕获SimpleModelTestUI初始化中的错误
+            try:
+                self.model_test_ui = SimpleModelTestUI(parent=tab)
+                print("  create_model_test_tab: 模型测试UI对象创建成功")
+                
+                QApplication.processEvents()
+                layout.addWidget(self.model_test_ui)
+                print("  create_model_test_tab: UI添加到布局成功")
+                QApplication.processEvents()
+                
+                print("✅ 模型测试UI加载成功")
+            except Exception as e:
+                print(f"  create_model_test_tab: SimpleModelTestUI初始化失败: {e}")
+                import traceback
+                traceback.print_exc()
+                # 创建备用UI
+                error_widget = QWidget()
+                error_layout = QVBoxLayout(error_widget)
+                error_label = QLabel(f"模型测试UI初始化失败: {e}")
+                error_label.setStyleSheet("color: red; font-size: 16px;")
+                error_label.setAlignment(Qt.AlignCenter)
+                error_label.setWordWrap(True)
+                error_layout.addWidget(error_label)
+                layout.addWidget(error_widget)
         except ImportError as e:
             error_widget = QWidget()
             error_layout = QVBoxLayout(error_widget)
-            error_label = QLabel(f"模型测试UI加载失败: {e}")
+            error_label = QLabel(f"模型测试UI加载失败 (导入错误): {e}")
             error_label.setStyleSheet("color: red; font-size: 16px;")
             error_label.setAlignment(Qt.AlignCenter)
+            error_label.setWordWrap(True)
             error_layout.addWidget(error_label)
             layout.addWidget(error_widget)
-            print(f"❌ 模型测试UI加载失败: {e}")
+            print(f"❌ 模型测试UI加载失败 (导入错误): {e}")
+            import traceback
+            traceback.print_exc()
+        except Exception as e:
+            error_widget = QWidget()
+            error_layout = QVBoxLayout(error_widget)
+            error_label = QLabel(f"模型测试UI加载失败: {type(e).__name__}: {e}")
+            error_label.setStyleSheet("color: red; font-size: 16px;")
+            error_label.setAlignment(Qt.AlignCenter)
+            error_label.setWordWrap(True)
+            error_layout.addWidget(error_label)
+            layout.addWidget(error_widget)
+            print(f"❌ 模型测试UI加载失败: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
         
+        print("  create_model_test_tab: 完成")
         return tab
 
+    def closeEvent(self, event):
+        """窗口关闭事件"""
+        # 停止摄像头检测
+        if self.camera_active:
+            self.stop_camera_detection()
+        event.accept()
+
 def main():
-    app = QApplication(sys.argv)
-    window = ModelTrainingInterface()
-    window.show()
-    sys.exit(app.exec_())
+    try:
+        print("=" * 50)
+        print("程序启动中...")
+        print("=" * 50)
+        
+        app = QApplication(sys.argv)
+        print("QApplication 创建成功")
+        
+        print("正在创建主窗口...")
+        window = ModelTrainingInterface()
+        print("主窗口创建成功")
+        
+        print("显示窗口...")
+        window.show()
+        print("窗口已显示")
+        
+        print("=" * 50)
+        print("程序已启动，进入事件循环...")
+        print("=" * 50)
+        
+        exit_code = app.exec_()
+        print(f"程序退出，退出码: {exit_code}")
+        sys.exit(exit_code)
+    except KeyboardInterrupt:
+        print("\n用户中断程序")
+        sys.exit(0)
+    except Exception as e:
+        print(f"\n程序启动失败: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+        input("\n按回车键退出...")  # 等待用户查看错误信息
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

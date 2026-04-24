@@ -1,0 +1,34 @@
+# 盲道检测系统API依赖包
+
+# Web框架
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+
+# 数据处理
+numpy>=1.24.0
+Pillow>=10.0.0
+pydantic>=2.4.0
+
+# 网络通信
+websockets>=11.0.3
+requests>=2.31.0
+
+# 测试框架
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# 并发处理
+asyncio>=3.4.3
+
+# 日志和监控
+logging>=0.4.9.6
+
+# 数据验证
+dataclasses>=0.6
+
+# 类型提示
+typing-extensions>=4.7.0
+
+# 其他工具
+python-multipart>=0.0.6
+python-json-logger>=2.0.7

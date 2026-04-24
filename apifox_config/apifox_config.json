@@ -1,0 +1,55 @@
+{
+  "project": {
+    "name": "盲道检测系统",
+    "description": "包含盲道检测、导航、语音和Android功能的完整API",
+    "version": "2.0.0"
+  },
+  "environments": [
+    {
+      "name": "开发环境",
+      "base_url": "http://localhost:8082",
+      "variables": {
+        "api_version": "v1",
+        "device_id": "test_device_001"
+      }
+    },
+    {
+      "name": "测试环境",
+      "base_url": "http://192.168.1.100:8082",
+      "variables": {
+        "api_version": "v1",
+        "device_id": "test_device_002"
+      }
+    },
+    {
+      "name": "生产环境",
+      "base_url": "https://api.yourdomain.com",
+      "variables": {
+        "api_version": "v1",
+        "device_id": "prod_device"
+      }
+    }
+  ],
+  "test_scenarios": [
+    {
+      "name": "完整检测流程",
+      "steps": [
+        {
+          "method": "POST",
+          "endpoint": "/api/v1/android/register",
+          "description": "设备注册"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/v1/detection/analyze",
+          "description": "图像检测"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/v1/voice/synthesize",
+          "description": "语音合成"
+        }
+      ]
+    }
+  ]
+}

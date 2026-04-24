@@ -1,0 +1,23 @@
+{
+  "navigation": {
+    "max_distance": 5000,
+    "preferred_path_types": [
+      "blind_path",
+      "sidewalk"
+    ],
+    "avoid_obstacles": true,
+    "voice_guidance": true,
+    "haptic_feedback": true
+  },
+  "pathfinding": {
+    "algorithm": "a_star",
+    "heuristic_weight": 1.0,
+    "max_iterations": 10000
+  },
+  "accessibility": {
+    "min_width": 0.8,
+    "max_slope": 0.05,
+    "avoid_stairs": true,
+    "prefer_ramps": true
+  }
+}

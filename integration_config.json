@@ -1,0 +1,32 @@
+{
+  "detection": {
+    "enabled": true,
+    "model_path": "models/yolov8n.pt",
+    "confidence_threshold": 0.5,
+    "input_size": [
+      640,
+      640
+    ]
+  },
+  "android": {
+    "enabled": true,
+    "server_port": 8080,
+    "camera_resolution": [
+      640,
+      480
+    ],
+    "fps": 30
+  },
+  "voice": {
+    "enabled": true,
+    "language": "zh-CN",
+    "voice_speed": 1.0,
+    "volume": 0.8,
+    "voice_engine": "pyttsx3"
+  },
+  "communication": {
+    "port": 8080,
+    "timeout": 5,
+    "retry_count": 3
+  }
+}

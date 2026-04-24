@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 盲道检测训练系统依赖包
 
 # 深度学习框架
@@ -100,3 +101,20 @@ click>=8.1.0
 python-dotenv>=1.0.0
 psutil>=5.9.0
 GPUtil>=1.4.0
+=======
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+python-multipart
+websockets
+opencv-python
+numpy
+ultralytics
+tensorflow
+tensorflow-hub
+torch
+torchvision
+python-dotenv
+pytest
+>>>>>>> origin/temp-merge

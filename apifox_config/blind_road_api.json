@@ -1,0 +1,553 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "盲道检测系统 - 完整集成API",
+    "description": "包含检测、导航、语音和Android功能的完整API",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "根路径 - API服务信息",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "summary": "Simple Status",
+        "description": "简单状态检查端点 - 用于Android连接测试",
+        "operationId": "simple_status_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/status": {
+      "get": {
+        "summary": "Get System Status",
+        "description": "获取系统状态",
+        "operationId": "get_system_status_api_v1_system_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/detection/analyze": {
+      "post": {
+        "summary": "Analyze Image",
+        "description": "图像检测分析",
+        "operationId": "analyze_image_api_v1_detection_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DetectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/navigation/plan-route": {
+      "post": {
+        "summary": "Plan Route",
+        "description": "规划路线",
+        "operationId": "plan_route_api_v1_navigation_plan_route_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/navigation/update-location": {
+      "post": {
+        "summary": "Update Location",
+        "description": "更新位置",
+        "operationId": "update_location_api_v1_navigation_update_location_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/navigation/status": {
+      "get": {
+        "summary": "Get Navigation Status",
+        "description": "获取导航状态",
+        "operationId": "get_navigation_status_api_v1_navigation_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/voice/synthesize": {
+      "post": {
+        "summary": "Synthesize Speech",
+        "description": "语音合成",
+        "operationId": "synthesize_speech_api_v1_voice_synthesize_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/android/register": {
+      "post": {
+        "summary": "Register Device",
+        "description": "设备注册",
+        "operationId": "register_device_api_v1_android_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRegistration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/android/data/upload": {
+      "post": {
+        "summary": "Upload Data",
+        "description": "数据上传",
+        "operationId": "upload_data_api_v1_android_data_upload_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "Data"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "code": {
+            "type": "integer",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "code",
+          "message"
+        ],
+        "title": "APIResponse",
+        "description": "API响应"
+      },
+      "DetectionRequest": {
+        "properties": {
+          "image_data": {
+            "type": "string",
+            "title": "Image Data",
+            "description": "Base64编码的图像数据"
+          },
+          "image_format": {
+            "type": "string",
+            "title": "Image Format",
+            "description": "图像格式",
+            "default": "png"
+          }
+        },
+        "type": "object",
+        "required": [
+          "image_data"
+        ],
+        "title": "DetectionRequest",
+        "description": "检测请求"
+      },
+      "DeviceRegistration": {
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "title": "Device Id"
+          },
+          "device_info": {
+            "type": "object",
+            "title": "Device Info"
+          },
+          "capabilities": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Capabilities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "device_id",
+          "device_info",
+          "capabilities"
+        ],
+        "title": "DeviceRegistration",
+        "description": "设备注册"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LocationUpdate": {
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "title": "Latitude",
+            "description": "纬度"
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude",
+            "description": "经度"
+          },
+          "accuracy": {
+            "type": "number",
+            "title": "Accuracy",
+            "description": "精度（米）",
+            "default": 5.0
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp",
+            "description": "时间戳"
+          }
+        },
+        "type": "object",
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "title": "LocationUpdate",
+        "description": "位置更新"
+      },
+      "RouteRequest": {
+        "properties": {
+          "start_latitude": {
+            "type": "number",
+            "title": "Start Latitude",
+            "description": "起点纬度"
+          },
+          "start_longitude": {
+            "type": "number",
+            "title": "Start Longitude",
+            "description": "起点经度"
+          },
+          "end_latitude": {
+            "type": "number",
+            "title": "End Latitude",
+            "description": "终点纬度"
+          },
+          "end_longitude": {
+            "type": "number",
+            "title": "End Longitude",
+            "description": "终点经度"
+          },
+          "navigation_mode": {
+            "type": "string",
+            "title": "Navigation Mode",
+            "description": "导航模式",
+            "default": "walking"
+          }
+        },
+        "type": "object",
+        "required": [
+          "start_latitude",
+          "start_longitude",
+          "end_latitude",
+          "end_longitude"
+        ],
+        "title": "RouteRequest",
+        "description": "路线规划请求"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VoiceRequest": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text",
+            "description": "要合成的文本"
+          },
+          "voice_type": {
+            "type": "string",
+            "title": "Voice Type",
+            "description": "语音类型",
+            "default": "default"
+          },
+          "speed": {
+            "type": "number",
+            "title": "Speed",
+            "description": "语速",
+            "default": 1.0
+          },
+          "volume": {
+            "type": "number",
+            "title": "Volume",
+            "description": "音量",
+            "default": 1.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "VoiceRequest",
+        "description": "语音请求"
+      }
+    }
+  }
+}
